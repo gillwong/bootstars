@@ -1,0 +1,164 @@
+{
+  "courses": [
+    {
+      "id": 1,
+      "code": "SC1005",
+      "title": "Digital Logic",
+      "school": "SCSE",
+      "au": 3,
+      "grading": "Letter-Graded"
+    },
+    {
+      "id": 2,
+      "code": "MH1810",
+      "title": "Mathematics 1",
+      "school": "SPMS",
+      "au": 3,
+      "grading": "Letter-Graded"
+    },
+    {
+      "id": 3,
+      "code": "SC1003",
+      "title": "Intro to Computational Thinking & Programming",
+      "school": "SCSE",
+      "au": 3,
+      "grading": "Letter-Graded"
+    },
+    {
+      "id": 4,
+      "code": "SC1004",
+      "title": "Linear Algebra for Computing",
+      "school": "SCSE",
+      "au": 3,
+      "grading": "Letter-Graded"
+    },
+    {
+      "id": 5,
+      "code": "SC1007",
+      "title": "Data Structures & Algorithms",
+      "school": "SCSE",
+      "au": 3,
+      "grading": "Letter-Graded"
+    },
+    {
+      "id": 6,
+      "code": "MH1812",
+      "title": "Discrete Mathematics",
+      "school": "SPMS",
+      "au": 3,
+      "grading": "Letter-Graded"
+    },
+    {
+      "code": "TC0001",
+      "title": "TEST COURSE 1",
+      "school": "PPIT",
+      "au": 7,
+      "grading": "Letter-Graded",
+      "prereq": "SC1003, MH1812",
+      "examSchedule": "2022-12-21T10:00:00.000Z",
+      "examDuration": 1.5,
+      "schedules": {
+        "10650": [
+          {
+            "type": "Lec/Studio",
+            "group": "L1",
+            "day": "Wed",
+            "time": "11.30 - 12.20",
+            "venue": "LT1",
+            "remark": ""
+          },
+          {
+            "type": "Lec/Studio",
+            "group": "L1",
+            "day": "Mon",
+            "time": "11.30 - 12.20",
+            "venue": "LT1",
+            "remark": ""
+          },
+          {
+            "type": "Tut",
+            "group": "A61",
+            "day": "Mon",
+            "time": "08.30 - 09.20",
+            "venue": "TR+8",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "10651": [
+          {
+            "type": "Lec/Studio",
+            "group": "L1",
+            "day": "Wed",
+            "time": "11.30 - 12.20",
+            "venue": "LT1",
+            "remark": ""
+          },
+          {
+            "type": "Lec/Studio",
+            "group": "L1",
+            "day": "Mon",
+            "time": "11.30 - 12.20",
+            "venue": "LT1",
+            "remark": ""
+          },
+          {
+            "type": "Tut",
+            "group": "A62",
+            "day": "Mon",
+            "time": "09.30 - 10.20",
+            "venue": "LHN-TR+19",
+            "remark": "Teaching Wk2-13"
+          }
+        ]
+      },
+      "id": 7
+    },
+    {
+      "code": "TC0002",
+      "title": "TEST COURSE 2",
+      "school": "PPIT",
+      "au": 2,
+      "grading": "Pass/Fail",
+      "prereq": "TC0001",
+      "examSchedule": "Not Applicable",
+      "examDuration": 0,
+      "schedules": {
+        "10587": [
+          {
+            "type": "Lec/Studio",
+            "group": "L1",
+            "day": "Wed",
+            "time": "15.30 - 16.20",
+            "venue": "ONLINE",
+            "remark": ""
+          },
+          {
+            "type": "Lec/Studio",
+            "group": "L1",
+            "day": "Mon",
+            "time": "15.30 - 16.20",
+            "venue": "ONLINE",
+            "remark": ""
+          },
+          {
+            "type": "Tut",
+            "group": "A104",
+            "day": "Mon",
+            "time": "14.30 - 15.20",
+            "venue": "TR+17",
+            "remark": "Teaching Wk2-13"
+          },
+          {
+            "type": "Lab",
+            "group": "A104",
+            "day": "Mon",
+            "time": "12.30 - 14.20",
+            "venue": "SPL_1",
+            "remark": "Teaching Wk2-13"
+          }
+        ]
+      },
+      "id": 8
+    }
+  ]
+}
