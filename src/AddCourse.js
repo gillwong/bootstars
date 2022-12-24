@@ -44,62 +44,6 @@ const AddCourse = ({ handleAdd, handleEdit, onLoadPage, mode }) => {
   const [ examSchedule, setExamSchedule ] = useState(new Date());
   const [ duration, setDuration ] = useState(1);
   const [ schedules, setSchedules ] = useState({});
-  /*rewrite
-  {
-    10650: [
-      {
-        type: "Lec/Studio",
-        group: "L1",
-        day: "Wed",
-        time: "11.30 - 12.20",
-        venue: "LT1",
-        remark: ""
-      },
-      {
-        type: "Lec/Studio",
-        group: "L1",
-        day: "Mon",
-        time: "11.30 - 12.20",
-        venue: "LT1",
-        remark: ""
-      },
-      {
-        type: "Tut",
-        group: "A61",
-        day: "Mon",
-        time: "08.30 - 09.20",
-        venue: "TR+8",
-        remark: "Teaching Wk2-13"
-      }
-    ],
-    10651: [
-      {
-        type: "Lec/Studio",
-        group: "L1",
-        day: "Wed",
-        time: "11.30 - 12.20",
-        venue: "LT1",
-        remark: ""
-      },
-      {
-        type: "Lec/Studio",
-        group: "L1",
-        day: "Mon",
-        time: "11.30 - 12.20",
-        venue: "LT1",
-        remark: ""
-      },
-      {
-        type: "Tut",
-        group: "A62",
-        day: "Mon",
-        time: "09.30 - 10.20",
-        venue: "LHN-TR+19",
-        remark: "Teaching Wk2-13"
-      }
-    ]
-  }
-  */
 
   const navigate = useNavigate();
 
@@ -109,7 +53,6 @@ const AddCourse = ({ handleAdd, handleEdit, onLoadPage, mode }) => {
     if(mode === "EDIT" || mode === "VIEW") {
       coursesServices.getData(editId)
         .then(returnedCourse => {
-          // console.log(returnedCourse);
           toggleHasFinals(returnedCourse.examSchedule !== "Not Applicable");
           setName(returnedCourse.title);
           setCode(returnedCourse.code);
@@ -148,7 +91,6 @@ const AddCourse = ({ handleAdd, handleEdit, onLoadPage, mode }) => {
       examDuration: hasFinals ? duration : 0,
       schedules
     }
-    // console.log(newCourse);
     switch(mode) {
       case "EDIT":
         newCourse["id"] = editId;
@@ -160,7 +102,6 @@ const AddCourse = ({ handleAdd, handleEdit, onLoadPage, mode }) => {
         navigate("/");
         break;
     }
-    // console.log("handleSubmit");
   }
 
   const changeSchedules = (index, subIndex, property, value) => {
@@ -170,7 +111,6 @@ const AddCourse = ({ handleAdd, handleEdit, onLoadPage, mode }) => {
   }
 
   const handleParse = () => {
-    // console.log(htmlParse);
     const reader = new FileReader();
     reader.readAsText(htmlParse);
     reader.onload = (e) => {
@@ -233,23 +173,14 @@ const AddCourse = ({ handleAdd, handleEdit, onLoadPage, mode }) => {
         });
       }
 
-      // console.log({ 
-      //   codeParsed, nameParsed, auParsed, schoolParsed, 
-      //   prereqParsed, excParsed, progExcParsed, ayExcParsed,
-      //   gradingTypeParsed, examScheduleParsed, bdeRemarkParsed, gerpeRemarkParsed, 
-      //   schedulesParsed
-      // })
-
       let examScheduleParsedProcessed, examDurationProcessed;
       if(examScheduleParsed !== "Not Applicable") {
         examScheduleParsedProcessed = dayjs.tz(examScheduleParsed, "DD-MMM-YYYY HHmm", "Asia/Singapore").toDate();
-        // console.log(examScheduleParsedProcessed);
 
         const examTime = examScheduleParsed.match(/([0-9]{4})to([0-9]{4})/);
         const startTime = dayjs(examTime[1], "HHmm");
         const endTime = dayjs(examTime[2], "HHmm");
         examDurationProcessed = endTime.diff(startTime, "h");
-        // console.log(examDurationProcessed);
       }
 
       toggleHasFinals(examScheduleParsed !== "Not Applicable");
