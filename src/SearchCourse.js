@@ -8,7 +8,7 @@ const SearchCourse = ({ courseFilter, setCourseFilter }) => {
         type="text" 
         placeholder="Search Course" 
         value={courseFilter} 
-        onChange={(e) => setCourseFilter(e.target.value)} 
+        onChange={e => setCourseFilter(e.target.value)} 
       />
     </Form>
   );

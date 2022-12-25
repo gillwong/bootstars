@@ -27,6 +27,6 @@ const getData = (id) => {
   return request.then(response => response.data);
 }
 
-const coursesServices = { getAll, create, update, delData, getData }
+const coursesServices = { getAll, create, update, delData, getData };
 
 export default coursesServices;

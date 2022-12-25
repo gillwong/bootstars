@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Sidebar = () => {
   const navigate = useNavigate();
+  
   return (
     <Col xs="auto" md="2" className="px-0 border-end">
       <ButtonGroup vertical className="d-flex w-100">

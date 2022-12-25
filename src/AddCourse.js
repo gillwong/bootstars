@@ -21,9 +21,15 @@ dayjs.extend(utc);
 dayjs.extend(timezone);
 dayjs.extend(duration);
 
-const AddCourse = ({ handleAdd, handleEdit, onLoadPage, mode }) => {
+const AddCourse = ({ 
+  mode, 
+  handleAdd, 
+  handleEdit, 
+  onLoadPage 
+}) => {
+
   let selectedIndex = new Set();
-  const { id: editId } = useParams();  // undefined if no parameter id exists
+  const { id } = useParams();  // undefined if no parameter id exists
 
   const [ indexFilter, setIndexFilter ] = useState("");
   const [ htmlParse, setHtmlParse ] = useState(null);
@@ -51,7 +57,7 @@ const AddCourse = ({ handleAdd, handleEdit, onLoadPage, mode }) => {
 
   useEffect(() => {
     if(mode === "EDIT" || mode === "VIEW") {
-      coursesServices.getData(editId)
+      coursesServices.getData(id)
         .then(returnedCourse => {
           toggleHasFinals(returnedCourse.examSchedule !== "Not Applicable");
           setName(returnedCourse.title);
@@ -71,7 +77,7 @@ const AddCourse = ({ handleAdd, handleEdit, onLoadPage, mode }) => {
         })
         .catch(err => console.error(err));
     }
-  }, [editId, mode]);
+  }, [id, mode]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -93,7 +99,7 @@ const AddCourse = ({ handleAdd, handleEdit, onLoadPage, mode }) => {
     }
     switch(mode) {
       case "EDIT":
-        newCourse["id"] = editId;
+        newCourse["id"] = id;
         handleEdit(newCourse);
         navigate(-1);
         break;

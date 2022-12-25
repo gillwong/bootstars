@@ -4,7 +4,7 @@
       "code": "TC0001",
       "title": "Test Course 1",
       "school": "PPIT(GTD)",
-      "au": 7,
+      "au": 8,
       "grading": "Letter-Graded",
       "prereq": [
         "SC1003",
