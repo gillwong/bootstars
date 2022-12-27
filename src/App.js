@@ -5,11 +5,12 @@ import Col from 'react-bootstrap/Col';
 import { useEffect, useState } from 'react';
 import coursesService from './services/courses';
 import { OFF } from './services/constants';
-import AppHeader from './AppHeader';
-import Sidebar from './Sidebar';
-import CourseList from './CourseList';
-import AddCourse from './AddCourse';
-import Schedule from './Schedule';
+import AppHeader from './appheader/AppHeader';
+import Sidebar from './sidebar/Sidebar';
+import CourseList from './courselist/CourseList';
+import AddCourse from './addcourse/AddCourse';
+import Schedule from './schedule/Schedule';
+import AppHeaderMUI from './appheader/AppHeaderMUI';
 
 function App() {
   const [courses, setCourses] = useState([]);
@@ -67,7 +68,7 @@ function App() {
     <Router>
       <Container fluid className="vh-100">
         
-        <AppHeader {...appHeaderProps} />
+        {pageTitle === "Schedule" ? <AppHeaderMUI {...appHeaderProps} /> : <AppHeader {...appHeaderProps} />}
         
         <Row className="h-100">
           

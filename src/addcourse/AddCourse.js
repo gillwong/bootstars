@@ -14,7 +14,7 @@ import duration from 'dayjs/plugin/duration';
 import AddSchedule from './AddSchedule';
 import { DashLg, PlusLg } from 'react-bootstrap-icons';
 import { useNavigate, useParams } from 'react-router-dom';
-import coursesServices from './services/courses';
+import coursesServices from '../services/courses';
 
 dayjs.extend(customParseFormat);
 dayjs.extend(utc);
