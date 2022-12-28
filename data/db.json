@@ -1,103 +1,6 @@
 {
   "courses": [
     {
-      "code": "TC0001",
-      "title": "Test Course 1",
-      "school": "PPIT(GTD)",
-      "au": 8,
-      "grading": "Letter-Graded",
-      "prereq": [
-        "SC1003",
-        "MH1812"
-      ],
-      "exclusive": [
-        "TS0001",
-        "TE0001"
-      ],
-      "programmeExclude": "",
-      "ayExclude": "",
-      "bde": true,
-      "gerpe": false,
-      "examSchedule": "2022-12-21T08:00:00.000Z",
-      "examDuration": 1.5,
-      "schedules": {
-        "10650": [
-          {
-            "type": "Lec/Studio",
-            "group": "L1",
-            "day": "Wed",
-            "time": "11.30 - 12.20",
-            "venue": "LT1",
-            "remark": ""
-          },
-          {
-            "type": "Lec/Studio",
-            "group": "L1",
-            "day": "Mon",
-            "time": "11.30 - 12.20",
-            "venue": "LT1",
-            "remark": ""
-          },
-          {
-            "type": "Tut",
-            "group": "A61",
-            "day": "Mon",
-            "time": "08.30 - 09.20",
-            "venue": "TR+8",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "10651": [
-          {
-            "type": "Lec/Studio",
-            "group": "L1",
-            "day": "Wed",
-            "time": "11.30 - 12.20",
-            "venue": "LT1",
-            "remark": ""
-          },
-          {
-            "type": "Lec/Studio",
-            "group": "L1",
-            "day": "Mon",
-            "time": "11.30 - 12.20",
-            "venue": "LT1",
-            "remark": ""
-          },
-          {
-            "type": "Tut",
-            "group": "A62",
-            "day": "Mon",
-            "time": "09.30 - 10.20",
-            "venue": "LHN-TR+19",
-            "remark": "Teaching Wk2-13"
-          }
-        ]
-      },
-      "id": 7
-    },
-    {
-      "code": "TC0002",
-      "title": "Test Course 2",
-      "school": "PPIT(GTD)",
-      "au": 2,
-      "grading": "Pass/Fail",
-      "prereq": [
-        "TC0001"
-      ],
-      "exclusive": [
-        ""
-      ],
-      "programmeExclude": "",
-      "ayExclude": "",
-      "bde": true,
-      "gerpe": true,
-      "examSchedule": "Not Applicable",
-      "examDuration": 0,
-      "schedules": {},
-      "id": 8
-    },
-    {
       "code": "SC1007",
       "title": "DATA STRUCTURES & ALGORITHMS",
       "school": "CSC(SCSE)",
@@ -5959,6 +5862,211 @@
         ]
       },
       "id": 21
+    },
+    {
+      "code": "SC2000",
+      "title": "PROBABILITY & STATISTICS FOR COMPUTING",
+      "school": "CSC(SCSE)",
+      "au": 3,
+      "grading": "Letter-Graded",
+      "prereq": [
+        "MH1810"
+      ],
+      "exclusive": [
+        "CE2100",
+        "CZ2100"
+      ],
+      "programmeExclude": "EEE, EEEC, ENG(EEE), ENG(NULL), IEEC, IEM",
+      "ayExclude": "(Admyr 2011-2020),",
+      "bde": false,
+      "gerpe": false,
+      "examSchedule": "Not Applicable",
+      "examDuration": 0,
+      "schedules": {
+        "10650": [
+          {
+            "type": "Lec/Studio",
+            "group": "L1",
+            "day": "Wed",
+            "time": "11.30 - 12.20",
+            "venue": "LT1",
+            "remark": ""
+          },
+          {
+            "type": "Lec/Studio",
+            "group": "L1",
+            "day": "Mon",
+            "time": "11.30 - 12.20",
+            "venue": "LT1",
+            "remark": ""
+          },
+          {
+            "type": "Tut",
+            "group": "A61",
+            "day": "Mon",
+            "time": "08.30 - 09.20",
+            "venue": "TR+8",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "10651": [
+          {
+            "type": "Lec/Studio",
+            "group": "L1",
+            "day": "Wed",
+            "time": "11.30 - 12.20",
+            "venue": "LT1",
+            "remark": ""
+          },
+          {
+            "type": "Lec/Studio",
+            "group": "L1",
+            "day": "Mon",
+            "time": "11.30 - 12.20",
+            "venue": "LT1",
+            "remark": ""
+          },
+          {
+            "type": "Tut",
+            "group": "A62",
+            "day": "Mon",
+            "time": "09.30 - 10.20",
+            "venue": "LHN-TR+19",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "10652": [
+          {
+            "type": "Lec/Studio",
+            "group": "L1",
+            "day": "Wed",
+            "time": "11.30 - 12.20",
+            "venue": "LT1",
+            "remark": ""
+          },
+          {
+            "type": "Lec/Studio",
+            "group": "L1",
+            "day": "Mon",
+            "time": "11.30 - 12.20",
+            "venue": "LT1",
+            "remark": ""
+          },
+          {
+            "type": "Tut",
+            "group": "A65",
+            "day": "Mon",
+            "time": "12.30 - 13.20",
+            "venue": "TR+17",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "10653": [
+          {
+            "type": "Lec/Studio",
+            "group": "L1",
+            "day": "Wed",
+            "time": "11.30 - 12.20",
+            "venue": "LT1",
+            "remark": ""
+          },
+          {
+            "type": "Lec/Studio",
+            "group": "L1",
+            "day": "Mon",
+            "time": "11.30 - 12.20",
+            "venue": "LT1",
+            "remark": ""
+          },
+          {
+            "type": "Tut",
+            "group": "A69",
+            "day": "Tue",
+            "time": "08.30 - 09.20",
+            "venue": "LHN-TR+19",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "10654": [
+          {
+            "type": "Lec/Studio",
+            "group": "L1",
+            "day": "Wed",
+            "time": "11.30 - 12.20",
+            "venue": "LT1",
+            "remark": ""
+          },
+          {
+            "type": "Lec/Studio",
+            "group": "L1",
+            "day": "Mon",
+            "time": "11.30 - 12.20",
+            "venue": "LT1",
+            "remark": ""
+          },
+          {
+            "type": "Tut",
+            "group": "A87",
+            "day": "Thu",
+            "time": "10.30 - 11.20",
+            "venue": "TR+7",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "10655": [
+          {
+            "type": "Lec/Studio",
+            "group": "L1",
+            "day": "Wed",
+            "time": "11.30 - 12.20",
+            "venue": "LT1",
+            "remark": ""
+          },
+          {
+            "type": "Lec/Studio",
+            "group": "L1",
+            "day": "Mon",
+            "time": "11.30 - 12.20",
+            "venue": "LT1",
+            "remark": ""
+          },
+          {
+            "type": "Tut",
+            "group": "Z82",
+            "day": "Wed",
+            "time": "13.30 - 14.20",
+            "venue": "LHN-TR+21",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "10656": [
+          {
+            "type": "Lec/Studio",
+            "group": "L1",
+            "day": "Wed",
+            "time": "11.30 - 12.20",
+            "venue": "LT1",
+            "remark": ""
+          },
+          {
+            "type": "Lec/Studio",
+            "group": "L1",
+            "day": "Mon",
+            "time": "11.30 - 12.20",
+            "venue": "LT1",
+            "remark": ""
+          },
+          {
+            "type": "Tut",
+            "group": "Z95",
+            "day": "Fri",
+            "time": "10.30 - 11.20",
+            "venue": "TR+33",
+            "remark": "Teaching Wk2-13"
+          }
+        ]
+      },
+      "id": 23
     }
   ]
 }

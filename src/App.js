@@ -16,6 +16,7 @@ import RightSidebar from './sidebar/RightSidebar';
 import ScheduleOnLoad from './schedule/ScheduleOnLoad';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import { TouchBackend } from 'react-dnd-touch-backend';
 
 function App() {
   const [courses, setCourses] = useState([]);
@@ -74,7 +75,7 @@ function App() {
 
   return (
     <Router>
-      <DndProvider backend={HTML5Backend}>
+      <DndProvider backend={TouchBackend}>
         <Container fluid className="vh-100">
           
           {pageTitle === "Schedule" 
