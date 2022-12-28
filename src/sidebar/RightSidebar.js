@@ -1,0 +1,38 @@
+import { Drawer, Toolbar } from "@mui/material";
+import CourseListMUI from "../courselist/CourseListMUI";
+
+const RightSidebar = ({ 
+  rightSidebarState, 
+  courses, 
+  courseFilter, 
+  handleDelete, 
+  setRightSidebarState
+}) => {
+
+  const courseListProps = {
+    courses,
+    courseFilter,
+    handleDelete
+  }
+
+  return (
+    <Drawer
+      variant="persistent"
+      anchor="right"
+      open={rightSidebarState}
+      onMouseLeave={() => setRightSidebarState(false)}
+      sx={{
+        width: 1/4,
+        "& .MuiDrawer-paper": {
+          width: 1/4, 
+          boxSizing: "border-box"
+        }
+      }}
+    >
+      <Toolbar />
+      <CourseListMUI {...courseListProps} />
+    </Drawer>
+  );
+}
+ 
+export default RightSidebar;

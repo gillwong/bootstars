@@ -7,15 +7,17 @@ const AppHeaderMUI = ({
   courseFilter, 
   handleHamburger, 
   handleWeek, 
-  setCourseFilter 
+  setCourseFilter, 
+  setRightSidebarState
 }) => {
   const searchCourseProps = {
-    courseFilter,
-    setCourseFilter
+    courseFilter, 
+    setCourseFilter, 
+    setRightSidebarState
   }
 
   return (
-    <AppBar>
+    <AppBar sx={{ zIndex: theme => theme.zIndex.drawer + 1 }}>
       <Toolbar>
         <IconButton 
           size="large" 

@@ -11,10 +11,13 @@ import CourseList from './courselist/CourseList';
 import AddCourse from './addcourse/AddCourse';
 import Schedule from './schedule/Schedule';
 import AppHeaderMUI from './appheader/AppHeaderMUI';
+import SidebarMUI from './sidebar/SidebarMUI';
+import RightSidebar from './sidebar/RightSidebar';
 
 function App() {
   const [courses, setCourses] = useState([]);
   const [sidebarState, setSidebarState] = useState(OFF);
+  const [rightSidebarState, setRightSidebarState] = useState(OFF);
   const [week, setWeek] = useState(1);
   const [pageTitle, setPageTitle] = useState("Course List");
   const [courseFilter, setCourseFilter] = useState("");
@@ -68,11 +71,19 @@ function App() {
     <Router>
       <Container fluid className="vh-100">
         
-        {pageTitle === "Schedule" ? <AppHeaderMUI {...appHeaderProps} /> : <AppHeader {...appHeaderProps} />}
+        {pageTitle === "Schedule" 
+          ? <AppHeaderMUI {...appHeaderProps} setRightSidebarState={setRightSidebarState} /> 
+          : <AppHeader {...appHeaderProps} />
+        }
         
         <Row className="h-100">
           
-          {sidebarState && <Sidebar />}
+          {pageTitle === "Schedule" 
+            ? <SidebarMUI sidebarState={sidebarState} />
+            : sidebarState && <Sidebar />
+          }
+
+          {pageTitle === "Schedule" && <RightSidebar {...courseListProps} rightSidebarState={rightSidebarState} setRightSidebarState={setRightSidebarState} />}
           
           <Col className="px-0">
             <Routes>

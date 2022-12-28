@@ -1,7 +1,11 @@
 import { Search } from "@mui/icons-material";
 import { OutlinedInput } from "@mui/material";
 
-const SearchCourseMUI = ({ courseFilter, setCourseFilter }) => {
+const SearchCourseMUI = ({ 
+  courseFilter, 
+  setCourseFilter, 
+  setRightSidebarState
+ }) => {
   return (
     <OutlinedInput 
       type="text"
@@ -9,6 +13,7 @@ const SearchCourseMUI = ({ courseFilter, setCourseFilter }) => {
       placeholder="Search Course"
       value={courseFilter}
       onChange={e => setCourseFilter(e.target.value)}
+      onFocus={() => setRightSidebarState(true)}
       sx={{ 
         input: { padding: 0 }, 
         px: 2, 
