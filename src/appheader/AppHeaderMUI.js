@@ -1,14 +1,17 @@
-import { ChevronLeft, ChevronRight, Menu } from "@mui/icons-material";
+import { ChevronLeft, ChevronRight, Close, Menu } from "@mui/icons-material";
 import { AppBar, Box, IconButton, Toolbar, Typography } from "@mui/material";
 import SearchCourseMUI from "./SearchCourseMUI";
 
 const AppHeaderMUI = ({
   week, 
   courseFilter, 
+  sidebarState, 
+  mouseLeft, 
   handleHamburger, 
   handleWeek, 
   setCourseFilter, 
-  setRightSidebarState
+  setRightSidebarState, 
+  setFocused
 }) => {
   const searchCourseProps = {
     courseFilter, 
@@ -25,7 +28,7 @@ const AppHeaderMUI = ({
           color="inherit"
           onClick={handleHamburger}
         >
-          <Menu />
+          {sidebarState ? <Close /> : <Menu />}
         </IconButton>
 
         <Typography variant="h6" ml={2}>
@@ -57,7 +60,7 @@ const AppHeaderMUI = ({
           </IconButton>
         </Box>
 
-        <SearchCourseMUI {...searchCourseProps} />
+        <SearchCourseMUI {...searchCourseProps} setFocused={setFocused} mouseLeft={mouseLeft} />
       </Toolbar>
     </AppBar>
   );

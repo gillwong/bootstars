@@ -18,6 +18,8 @@ function App() {
   const [courses, setCourses] = useState([]);
   const [sidebarState, setSidebarState] = useState(OFF);
   const [rightSidebarState, setRightSidebarState] = useState(OFF);
+  const [focused, setFocused] = useState(false);
+  const [mouseLeft, setMouseLeft] = useState(true);
   const [week, setWeek] = useState(1);
   const [pageTitle, setPageTitle] = useState("Course List");
   const [courseFilter, setCourseFilter] = useState("");
@@ -72,7 +74,7 @@ function App() {
       <Container fluid className="vh-100">
         
         {pageTitle === "Schedule" 
-          ? <AppHeaderMUI {...appHeaderProps} setRightSidebarState={setRightSidebarState} /> 
+          ? <AppHeaderMUI {...appHeaderProps} setRightSidebarState={setRightSidebarState} setFocused={setFocused} mouseLeft={mouseLeft} /> 
           : <AppHeader {...appHeaderProps} />
         }
         
@@ -83,7 +85,7 @@ function App() {
             : sidebarState && <Sidebar />
           }
 
-          {pageTitle === "Schedule" && <RightSidebar {...courseListProps} rightSidebarState={rightSidebarState} setRightSidebarState={setRightSidebarState} />}
+          {pageTitle === "Schedule" && <RightSidebar {...courseListProps} rightSidebarState={rightSidebarState} setRightSidebarState={setRightSidebarState} focused={focused} setMouseLeft={setMouseLeft} />}
           
           <Col className="px-0">
             <Routes>

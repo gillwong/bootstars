@@ -107,6 +107,8 @@ const AddCourse = ({
         handleAdd(newCourse);
         navigate("/");
         break;
+      default:
+        break;
     }
   }
 

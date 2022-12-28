@@ -3,8 +3,10 @@ import { OutlinedInput } from "@mui/material";
 
 const SearchCourseMUI = ({ 
   courseFilter, 
+  mouseLeft, 
   setCourseFilter, 
-  setRightSidebarState
+  setRightSidebarState,
+  setFocused
  }) => {
   return (
     <OutlinedInput 
@@ -13,7 +15,16 @@ const SearchCourseMUI = ({
       placeholder="Search Course"
       value={courseFilter}
       onChange={e => setCourseFilter(e.target.value)}
-      onFocus={() => setRightSidebarState(true)}
+      onFocus={() => {
+        setFocused(true);
+        setRightSidebarState(true);
+      }}
+      onBlur={() => {
+        setFocused(false);
+        if(mouseLeft) {
+          setRightSidebarState(false);
+        }
+      }}
       sx={{ 
         input: { padding: 0 }, 
         px: 2, 

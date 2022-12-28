@@ -4,9 +4,11 @@ import CourseListMUI from "../courselist/CourseListMUI";
 const RightSidebar = ({ 
   rightSidebarState, 
   courses, 
+  focused,
   courseFilter, 
   handleDelete, 
-  setRightSidebarState
+  setRightSidebarState, 
+  setMouseLeft
 }) => {
 
   const courseListProps = {
@@ -20,7 +22,13 @@ const RightSidebar = ({
       variant="persistent"
       anchor="right"
       open={rightSidebarState}
-      onMouseLeave={() => setRightSidebarState(false)}
+      onMouseLeave={() => {
+        setMouseLeft(true);
+        if(!focused) {
+          setRightSidebarState(false);
+        }
+      }}
+      onMouseEnter={() => setMouseLeft(false)}
       sx={{
         width: 1/4,
         "& .MuiDrawer-paper": {
