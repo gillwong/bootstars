@@ -188,7 +188,7 @@ const AddCourse = ({
         const examTime = examScheduleParsed.match(/([0-9]{4})to([0-9]{4})/);
         const startTime = dayjs(examTime[1], "HHmm");
         const endTime = dayjs(examTime[2], "HHmm");
-        examDurationProcessed = endTime.diff(startTime, "h");
+        examDurationProcessed = endTime.diff(startTime, "h", true);
       }
 
       toggleHasFinals(examScheduleParsed !== "Not Applicable");

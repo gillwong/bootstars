@@ -1,10 +1,28 @@
 import { DeleteOutline, InfoOutlined, ModeEditOutlineOutlined } from "@mui/icons-material";
 import { Card, CardActions, CardContent, IconButton, Typography } from "@mui/material";
+import { useDrag } from "react-dnd";
 import { Link } from "react-router-dom";
+import { ItemTypes } from "../services/constants";
 
 const CourseCardMUI = ({ course, handleDelete }) => {
+  const [{ isDragging }, drag] = useDrag(() => ({
+    type: ItemTypes.COURSE,
+    item: () => ({ 
+      ...course
+    }),
+    collect: monitor => ({
+      isDragging: !!monitor.isDragging()
+    })
+  }))
+
   return (
-    <Card sx={{ margin: 1 }}>
+    <Card 
+      ref={drag} 
+      sx={{ 
+        margin: 1, 
+        opacity: isDragging ? 0.5 : 1 
+      }}
+    >
       <CardContent>
         <Typography 
           color="text.secondary" 

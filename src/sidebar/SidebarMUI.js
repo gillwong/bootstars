@@ -10,6 +10,15 @@ const SidebarMUI = ({ sidebarState }) => {
       variant="persistent"
       anchor="left"
       open={sidebarState}
+      sx={{
+        width: 1/5,
+        flexShrink: 0,
+        '& .MuiDrawer-paper': {
+          width: 1/5,
+          boxSizing: 'border-box',
+          boxShadow: 3
+        },
+      }}
     >
       <Toolbar />
       <Box sx={{ overflow: "auto" }}>

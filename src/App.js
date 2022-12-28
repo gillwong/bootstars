@@ -13,6 +13,9 @@ import Schedule from './schedule/Schedule';
 import AppHeaderMUI from './appheader/AppHeaderMUI';
 import SidebarMUI from './sidebar/SidebarMUI';
 import RightSidebar from './sidebar/RightSidebar';
+import ScheduleOnLoad from './schedule/ScheduleOnLoad';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 function App() {
   const [courses, setCourses] = useState([]);
@@ -71,58 +74,61 @@ function App() {
 
   return (
     <Router>
-      <Container fluid className="vh-100">
-        
-        {pageTitle === "Schedule" 
-          ? <AppHeaderMUI {...appHeaderProps} setRightSidebarState={setRightSidebarState} setFocused={setFocused} mouseLeft={mouseLeft} /> 
-          : <AppHeader {...appHeaderProps} />
-        }
-        
-        <Row className="h-100">
+      <DndProvider backend={HTML5Backend}>
+        <Container fluid className="vh-100">
           
           {pageTitle === "Schedule" 
-            ? <SidebarMUI sidebarState={sidebarState} />
-            : sidebarState && <Sidebar />
+            ? <AppHeaderMUI {...appHeaderProps} setRightSidebarState={setRightSidebarState} setFocused={setFocused} mouseLeft={mouseLeft} /> 
+            : <AppHeader {...appHeaderProps} />
           }
 
-          {pageTitle === "Schedule" && <RightSidebar {...courseListProps} rightSidebarState={rightSidebarState} setRightSidebarState={setRightSidebarState} focused={focused} setMouseLeft={setMouseLeft} />}
+          {pageTitle === "Schedule" && <>
+            <SidebarMUI sidebarState={sidebarState} />
+            <RightSidebar {...courseListProps} rightSidebarState={rightSidebarState} setRightSidebarState={setRightSidebarState} focused={focused} setMouseLeft={setMouseLeft} />
+            <Schedule sidebarState={sidebarState} onLoadPage={() => setPageTitle("Schedule")} />
+          </>}
           
-          <Col className="px-0">
-            <Routes>
-              <Route path="/" element={
-                <CourseList 
-                  {...courseListProps} 
-                  onLoadPage={() => setPageTitle("Course List")} 
-                />
-              } />
-              <Route path="/add" element={
-                <AddCourse 
-                  mode="ADD" 
-                  handleAdd={addCourse} 
-                  onLoadPage={() => setPageTitle("Add Course")} 
-                />
-              } />
-              <Route path="/schedule" element={
-                <Schedule onLoadPage={() => setPageTitle("Schedule")} />
-              } />
-              <Route path="/edit/:id" element={
-                <AddCourse 
-                  mode="EDIT" 
-                  handleAdd={addCourse} 
-                  handleEdit={editCourse} 
-                  onLoadPage={() => setPageTitle("Edit Course")} 
-                />
-              } />
-              <Route path="/view/:id" element={
-                <AddCourse 
-                  mode="VIEW" 
-                  onLoadPage={() => setPageTitle("View Course")} 
-                />
-              } />
-            </Routes>
-          </Col>
-        </Row>
-      </Container>
+          <Row className="mh-100">
+            
+            {pageTitle !== "Schedule" && sidebarState && <Sidebar />}
+
+            <Col className="px-0">
+              <Routes>
+                <Route path="/" element={
+                  <CourseList 
+                    {...courseListProps} 
+                    onLoadPage={() => setPageTitle("Course List")} 
+                  />
+                } />
+                <Route path="/add" element={
+                  <AddCourse 
+                    mode="ADD" 
+                    handleAdd={addCourse} 
+                    onLoadPage={() => setPageTitle("Add Course")} 
+                  />
+                } />
+                <Route path="/schedule" element={
+                  <ScheduleOnLoad onLoadPage={() => setPageTitle("Schedule")} />
+                } />
+                <Route path="/edit/:id" element={
+                  <AddCourse 
+                    mode="EDIT" 
+                    handleAdd={addCourse} 
+                    handleEdit={editCourse} 
+                    onLoadPage={() => setPageTitle("Edit Course")} 
+                  />
+                } />
+                <Route path="/view/:id" element={
+                  <AddCourse 
+                    mode="VIEW" 
+                    onLoadPage={() => setPageTitle("View Course")} 
+                  />
+                } />
+              </Routes>
+            </Col>
+          </Row>
+        </Container>
+      </DndProvider>
     </Router>
   );
 }

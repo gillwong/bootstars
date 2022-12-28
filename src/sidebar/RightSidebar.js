@@ -33,7 +33,8 @@ const RightSidebar = ({
         width: 1/4,
         "& .MuiDrawer-paper": {
           width: 1/4, 
-          boxSizing: "border-box"
+          boxSizing: "border-box", 
+          boxShadow: 3
         }
       }}
     >
