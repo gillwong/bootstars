@@ -15,8 +15,8 @@ import SidebarMUI from './sidebar/SidebarMUI';
 import RightSidebar from './sidebar/RightSidebar';
 import ScheduleOnLoad from './schedule/ScheduleOnLoad';
 import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
-import { TouchBackend } from 'react-dnd-touch-backend';
+import { MultiBackend } from 'dnd-multi-backend';
+import { HTML5toTouch } from 'rdndmb-html5-to-touch';
 
 function App() {
   const [courses, setCourses] = useState([]);
@@ -75,7 +75,7 @@ function App() {
 
   return (
     <Router>
-      <DndProvider backend={TouchBackend}>
+      <DndProvider backend={MultiBackend} options={HTML5toTouch}>
         <Container fluid className="vh-100">
           
           {pageTitle === "Schedule" 

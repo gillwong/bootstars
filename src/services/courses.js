@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = "https://8888-2001-448a-2071-107-19dc-d410-ab-4a18.ap.ngrok.io/courses";  // http://localhost:8000
+const baseUrl = "http://localhost:8000/courses";  // http://localhost:8000
 
 const getAll = () => {
   const request = axios.get(baseUrl);
