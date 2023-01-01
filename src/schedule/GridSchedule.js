@@ -7,17 +7,42 @@ import customParseFormat from 'dayjs/plugin/customParseFormat';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
 import duration from 'dayjs/plugin/duration';
+import { useEffect, useState } from "react";
 
 dayjs.extend(customParseFormat);
 dayjs.extend(utc);
 dayjs.extend(timezone);
 dayjs.extend(duration);
 
-const GridSchedule = ({ pos, tableContent, setTableContent, children }) => {
+const GridSchedule = ({ pos, prevTableContent, setPrevTableContent, tableContent, setTableContent, children }) => {
   const day = DAYS[pos[1] - 1];
   let timeStart = `${6 + pos[0]}.00`;
   let timeEnd;
-  let indexDrop;
+  const [indexDrop, setIndexDrop] = useState();
+
+  const addToTable = item => {
+    let newTableContent = [...tableContent];
+
+    for(let i = 0; i < item.schedules[indexDrop].length; i++) {
+      timeStart = item.schedules[indexDrop][i].time.substring(0, 5);
+      timeEnd = item.schedules[indexDrop][i].time.substring(8);
+
+      let startTime = dayjs(timeStart, "HH.mm");
+      let endTime = dayjs(timeEnd, "HH.mm");
+      let duration = endTime.diff(startTime, "h", true);
+
+      newTableContent[parseInt(timeStart.substring(0, 2)) - 6][DAYS.findIndex(element => element === item.schedules[indexDrop][i].day) + 1] = {
+        course: item,
+        indexDrop,
+        timeStart,
+        timeEnd,
+        timing: `${timeStart} - ${timeEnd}`,
+        duration,
+        group: item.schedules[indexDrop][i]
+      }
+    }
+    setTableContent(newTableContent);
+  }
 
   const [{ isOver, canDrop, itemObj }, drop] = useDrop(() => ({
     accept: ItemTypes.COURSE,
@@ -28,7 +53,8 @@ const GridSchedule = ({ pos, tableContent, setTableContent, children }) => {
           if(timeStart.substring(0, 2) === item.schedules[indexes[i]][j].time.substring(0, 2) && day === item.schedules[indexes[i]][j].day) {
             timeStart = item.schedules[indexes[i]][j].time.substring(0, 5);
             timeEnd = item.schedules[indexes[i]][j].time.substring(8);
-            indexDrop = indexes[i];
+            setIndexDrop(indexes[i]);
+            // console.log({ timeStart, timeEnd, indexDrop });
             return true;
           }
         }
@@ -36,27 +62,7 @@ const GridSchedule = ({ pos, tableContent, setTableContent, children }) => {
       return false;
     },
     drop: item => {
-      let newTableContent = [...tableContent];
-
-      for(let i = 0; i < item.schedules[indexDrop].length; i++) {
-        timeStart = item.schedules[indexDrop][i].time.substring(0, 5);
-        timeEnd = item.schedules[indexDrop][i].time.substring(8);
-
-        let startTime = dayjs(timeStart, "HH.mm");
-        let endTime = dayjs(timeEnd, "HH.mm");
-        let duration = endTime.diff(startTime, "h", true);
-
-        newTableContent[parseInt(timeStart.substring(0, 2)) - 6][DAYS.findIndex(element => element === item.schedules[indexDrop][i].day) + 1] = {
-          course: item,
-          indexDrop,
-          timeStart,
-          timeEnd,
-          timing: `${timeStart} - ${timeEnd}`,
-          duration,
-          group: item.schedules[indexDrop][i]
-        }
-      }
-      setTableContent(newTableContent);
+      addToTable(item);
     },
     collect: monitor => ({
       isOver: !!monitor.isOver(),
@@ -64,6 +70,19 @@ const GridSchedule = ({ pos, tableContent, setTableContent, children }) => {
       itemObj: monitor.getItem()
     })
   }), [pos])
+
+  useEffect(() => {
+    if(isOver && canDrop && indexDrop) {
+      console.log({ isOver, prevTableContent, tableContent });
+      const newPrevTableContent = structuredClone(tableContent);
+      setPrevTableContent(newPrevTableContent);
+      addToTable(itemObj);
+    } else if(!isOver && canDrop && indexDrop) {
+      console.log({ isOver, prevTableContent, tableContent });
+      const newTableContent = structuredClone(prevTableContent);
+      setTableContent(newTableContent);
+    }
+  }, [isOver])
 
   return (
     <Grid2 
@@ -89,18 +108,5 @@ const GridSchedule = ({ pos, tableContent, setTableContent, children }) => {
     </Grid2>
   );
 }
-
-// <Card
-//   sx={{
-//     position: "absolute",
-//     width: 1,
-//   }}  
-// >
-//   <CardContent sx={{ padding: 1 }}>
-//     <Typography color="text.secondary" sx={{ fontWeight: "light" }}>{tableContent[pos[0]][pos[1]].code}</Typography>
-//     <Typography color="text.secondary" sx={{ fontWeight: "light" }}>{tableContent[pos[0]][pos[1]].id}</Typography>
-//   </CardContent>
-// </Card>
-//   }
 
 export default GridSchedule;

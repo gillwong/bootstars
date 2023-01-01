@@ -4,6 +4,7 @@ import { Fragment, useEffect, useState } from "react";
 import GridSchedule from "./GridSchedule";
 
 const Schedule = ({ sidebarState, onLoadPage }) => {
+  const [prevTableContent, setPrevTableContent] = useState([]);
   const [tableContent, setTableContent] = useState([
     ["Time", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
     ["08.00", "", "", "", "", "", "", ""],
@@ -56,7 +57,14 @@ const Schedule = ({ sidebarState, onLoadPage }) => {
                   ? <Grid2 key={j} xs={1} textAlign="right">
                     <Typography variant="button" color="text.secondary" sx={{ display: "block", mt: 1, mb: -1, mr: -0.5}}>{content}</Typography>
                   </Grid2>
-                  : <GridSchedule key={j} pos={[i, j]} tableContent={tableContent} setTableContent={setTableContent}>{content}</GridSchedule>
+                  : <GridSchedule 
+                    key={j} 
+                    pos={[i, j]} 
+                    prevTableContent={prevTableContent} 
+                    setPrevTableContent={setPrevTableContent} 
+                    tableContent={tableContent} 
+                    setTableContent={setTableContent}
+                  >{content}</GridSchedule>
             )}
           </Fragment>
         )}
