@@ -5,7 +5,7 @@ import duration from "dayjs/plugin/duration";
 import timezone from "dayjs/plugin/timezone";
 import utc from "dayjs/plugin/utc";
 import PropTypes from "prop-types";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDrop } from "react-dnd";
 
 import CourseCardMini from "../courselist/CourseCardMini";
@@ -77,18 +77,23 @@ const GridSchedule = ({
       canDrop: !!monitor.canDrop(),
       itemObj: monitor.getItem()
     })
-  }), [pos]);
+  }));
+
+  const prevValues = useRef({ isOver, canDrop, indexDrop });
 
   useEffect(() => {
-    if(isOver && canDrop && indexDrop) {
+    if(prevValues.isOver !== isOver
+      && prevValues.canDrop !== canDrop
+      && prevValues.indexDrop !== indexDrop) {
       // console.log({ isOver, prevTableContent, tableContent });
-      const newPrevTableContent = structuredClone(tableContent);
-      setPrevTableContent(newPrevTableContent);
-      addToTable(itemObj);
-    } else if(!isOver && canDrop && indexDrop) {
-      // console.log({ isOver, prevTableContent, tableContent });
-      const newTableContent = structuredClone(prevTableContent);
-      setTableContent(newTableContent);
+      if(isOver && canDrop && indexDrop) {
+        const newPrevTableContent = structuredClone(tableContent);
+        setPrevTableContent(newPrevTableContent);
+        addToTable(itemObj);
+      } else if(!isOver && canDrop && indexDrop) {
+        const newTableContent = structuredClone(prevTableContent);
+        setTableContent(newTableContent);
+      }
     }
   }, [isOver]);
 
@@ -109,7 +114,10 @@ const GridSchedule = ({
           width: "100%",
           height: "100%",
           margin: 0,
-          zIndex: isOver ? 5 : 0,
+          zIndex: isOver ? 10 : 0,
+          // debug
+          backgroundColor: "red",
+          opacity: "50%"
         }}
       >
 
@@ -117,7 +125,7 @@ const GridSchedule = ({
       {tableContent[pos[0]][pos[1]] &&
         <CourseCardMini
           course={tableContent[pos[0]][pos[1]].course}
-          index={parseInt(tableContent[pos[0]][pos[1]].indexDrop)}
+          index={tableContent[pos[0]][pos[1]].indexDrop}
           timing={tableContent[pos[0]][pos[1]].timing}
           mt={tableContent[pos[0]][pos[1]].timeStart.substring(3) === "30" ? 2.5 : 0}
           height={tableContent[pos[0]][pos[1]].duration}

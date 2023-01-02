@@ -23,7 +23,7 @@ const AddSchedule = ({
 
 AddSchedule.propTypes = {
   scheduleObj: PropTypes.object,
-  index: PropTypes.number,
+  index: PropTypes.string,
   subIndex: PropTypes.number,
   changeSchedules: PropTypes.func,
   mode: PropTypes.string

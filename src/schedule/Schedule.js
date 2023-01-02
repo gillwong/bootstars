@@ -27,6 +27,7 @@ const Schedule = ({ onLoadPage }) => {
   ]);
 
   useEffect(onLoadPage, [onLoadPage]);
+
   return (
     <Box sx={{ flexGrow: 1, py: 1 }}>
       <Toolbar />

@@ -61,7 +61,7 @@ const CourseCardMini = ({
 
 CourseCardMini.propTypes = {
   course: PropTypes.object,
-  index: PropTypes.number,
+  index: PropTypes.string,
   timing: PropTypes.string,
   mt: PropTypes.number,
   height: PropTypes.number,

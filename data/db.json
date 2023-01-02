@@ -4988,6 +4988,468 @@
         ]
       },
       "id": 20
+    },
+    {
+      "code": "HW0288",
+      "title": "ENGINEERING COMMUNICATION",
+      "school": "SOH",
+      "au": 2,
+      "grading": "Letter-Graded",
+      "prereq": [
+        "Year 3 standing"
+      ],
+      "exclusive": [
+        "HW0210"
+      ],
+      "programmeExclude": "AERO 1, AERO 2, ASEC 1, ASEC 2, BEEC 1, BEEC 2, BIE 1, BIE 2, CBE 1, CBE 2, CBEC 1, CBEC 2, CE 1, CEE 1, CEE 2, CEEC 1, CEEC 2, CSC 1*, CSEC 1, CSEC 2, CVEC 1, CVEC 2, EEE 2, ENE 1, ENE 2, ENEC 1, ENEC 2, IEM 2, MAT 1, MAT 2, ME(DES) 2, ME(NULL) 2, ME(RMS) 2, MEEC(DES) 2, MEEC(NULL) 2, MEEC(RMS) 2, MS(2019-onwards), MTEC 1, MTEC 2",
+      "ayExclude": "",
+      "bde": false,
+      "gerpe": false,
+      "examSchedule": "Not Applicable",
+      "examDuration": 0,
+      "schedules": {
+        "10017": [
+          {
+            "type": "Tut",
+            "group": "SCE1",
+            "day": "Mon",
+            "time": "16.30 - 18.20",
+            "venue": "TR+7",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "10018": [
+          {
+            "type": "Tut",
+            "group": "SCE2",
+            "day": "Tue",
+            "time": "16.30 - 18.20",
+            "venue": "TR+7",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "10019": [
+          {
+            "type": "Tut",
+            "group": "SCE3",
+            "day": "Wed",
+            "time": "16.30 - 18.20",
+            "venue": "TR+19",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "10020": [
+          {
+            "type": "Tut",
+            "group": "SCE4",
+            "day": "Thu",
+            "time": "16.30 - 18.20",
+            "venue": "TR+7",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "10021": [
+          {
+            "type": "Tut",
+            "group": "SCE5",
+            "day": "Fri",
+            "time": "16.30 - 18.20",
+            "venue": "TR+64",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "10022": [
+          {
+            "type": "Tut",
+            "group": "SCE6",
+            "day": "Mon",
+            "time": "16.30 - 18.20",
+            "venue": "LHN-TR+20",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "10023": [
+          {
+            "type": "Tut",
+            "group": "SCE7",
+            "day": "Tue",
+            "time": "16.30 - 18.20",
+            "venue": "TR+8",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "10024": [
+          {
+            "type": "Tut",
+            "group": "SCE8",
+            "day": "Wed",
+            "time": "16.30 - 18.20",
+            "venue": "TR+8",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "10025": [
+          {
+            "type": "Tut",
+            "group": "SCE9",
+            "day": "Thu",
+            "time": "16.30 - 18.20",
+            "venue": "TR+1",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "10026": [
+          {
+            "type": "Tut",
+            "group": "SCE10",
+            "day": "Fri",
+            "time": "16.30 - 18.20",
+            "venue": "TR+6",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "10027": [
+          {
+            "type": "Tut",
+            "group": "SCE11",
+            "day": "Mon",
+            "time": "14.30 - 16.20",
+            "venue": "LHN-TR+20",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "10028": [
+          {
+            "type": "Tut",
+            "group": "SCE12",
+            "day": "Tue",
+            "time": "14.30 - 16.20",
+            "venue": "LHN-TR+21",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "10029": [
+          {
+            "type": "Tut",
+            "group": "SCE13",
+            "day": "Wed",
+            "time": "14.30 - 16.20",
+            "venue": "TR+19",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "10031": [
+          {
+            "type": "Tut",
+            "group": "SCE15",
+            "day": "Fri",
+            "time": "14.30 - 16.20",
+            "venue": "TR+3",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "10032": [
+          {
+            "type": "Tut",
+            "group": "SCE16",
+            "day": "Mon",
+            "time": "10.30 - 12.20",
+            "venue": "LHN-TR+20",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "10033": [
+          {
+            "type": "Tut",
+            "group": "SCE17",
+            "day": "Tue",
+            "time": "10.30 - 12.20",
+            "venue": "LHN-TR+20",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "10034": [
+          {
+            "type": "Tut",
+            "group": "SCE18",
+            "day": "Wed",
+            "time": "10.30 - 12.20",
+            "venue": "LHN-TR+20",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "10036": [
+          {
+            "type": "Tut",
+            "group": "SCE20",
+            "day": "Fri",
+            "time": "10.30 - 12.20",
+            "venue": "LHN-TR+18",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "10037": [
+          {
+            "type": "Tut",
+            "group": "SCE21",
+            "day": "Mon",
+            "time": "12.30 - 14.20",
+            "venue": "LHN-TR+20",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "10039": [
+          {
+            "type": "Tut",
+            "group": "SCE23",
+            "day": "Wed",
+            "time": "12.30 - 14.20",
+            "venue": "LHN-TR+20",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "10040": [
+          {
+            "type": "Tut",
+            "group": "SCE24",
+            "day": "Thu",
+            "time": "12.30 - 14.20",
+            "venue": "LHN-TR+19",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "10041": [
+          {
+            "type": "Tut",
+            "group": "SCE25",
+            "day": "Fri",
+            "time": "12.30 - 14.20",
+            "venue": "TR+20",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "15201": [
+          {
+            "type": "Tut",
+            "group": "MAT1",
+            "day": "Mon",
+            "time": "11.30 - 13.20",
+            "venue": "TR+20",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "15202": [
+          {
+            "type": "Tut",
+            "group": "MAT2",
+            "day": "Thu",
+            "time": "15.30 - 17.20",
+            "venue": "TR+18",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "15203": [
+          {
+            "type": "Tut",
+            "group": "MAT3",
+            "day": "Fri",
+            "time": "09.30 - 11.20",
+            "venue": "TR+16",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "15204": [
+          {
+            "type": "Tut",
+            "group": "MAT4",
+            "day": "Fri",
+            "time": "15.30 - 17.20",
+            "venue": "TR+16",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "23019": [
+          {
+            "type": "Tut",
+            "group": "MA1",
+            "day": "Mon",
+            "time": "09.30 - 11.20",
+            "venue": "TR+33",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "23020": [
+          {
+            "type": "Tut",
+            "group": "MA2",
+            "day": "Mon",
+            "time": "09.30 - 11.20",
+            "venue": "TR+20",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "23021": [
+          {
+            "type": "Tut",
+            "group": "MA3",
+            "day": "Mon",
+            "time": "16.30 - 18.20",
+            "venue": "LHN-TR+17",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "23022": [
+          {
+            "type": "Tut",
+            "group": "MA4",
+            "day": "Tue",
+            "time": "16.30 - 18.20",
+            "venue": "LHN-TR+21",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "23023": [
+          {
+            "type": "Tut",
+            "group": "MA5",
+            "day": "Wed",
+            "time": "09.30 - 11.20",
+            "venue": "TR+67",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "23024": [
+          {
+            "type": "Tut",
+            "group": "MA6",
+            "day": "Wed",
+            "time": "09.30 - 11.20",
+            "venue": "TR+9",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "23025": [
+          {
+            "type": "Tut",
+            "group": "MA7",
+            "day": "Wed",
+            "time": "16.30 - 18.20",
+            "venue": "LHN-TR+20",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "23026": [
+          {
+            "type": "Tut",
+            "group": "MA8",
+            "day": "Fri",
+            "time": "14.30 - 16.20",
+            "venue": "TR+9",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "23027": [
+          {
+            "type": "Tut",
+            "group": "MA9",
+            "day": "Fri",
+            "time": "16.30 - 18.20",
+            "venue": "TR+2",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "23028": [
+          {
+            "type": "Tut",
+            "group": "MA10",
+            "day": "Fri",
+            "time": "16.30 - 18.20",
+            "venue": "TR+3",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "23029": [
+          {
+            "type": "Tut",
+            "group": "MA11",
+            "day": "Fri",
+            "time": "14.30 - 16.20",
+            "venue": "TR+20",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "23031": [
+          {
+            "type": "Tut",
+            "group": "MA13",
+            "day": "Fri",
+            "time": "14.30 - 16.20",
+            "venue": "TR+6",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "32234": [
+          {
+            "type": "Tut",
+            "group": "EE01",
+            "day": "Mon",
+            "time": "09.30 - 11.20",
+            "venue": "TR+91",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "32236": [
+          {
+            "type": "Tut",
+            "group": "EE03",
+            "day": "Tue",
+            "time": "11.30 - 13.20",
+            "venue": "TR+91",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "32237": [
+          {
+            "type": "Tut",
+            "group": "EE04",
+            "day": "Wed",
+            "time": "11.30 - 13.20",
+            "venue": "TR+67",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "32238": [
+          {
+            "type": "Tut",
+            "group": "EE05",
+            "day": "Wed",
+            "time": "16.30 - 18.20",
+            "venue": "TR+67",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "32239": [
+          {
+            "type": "Tut",
+            "group": "EE06",
+            "day": "Thu",
+            "time": "11.30 - 13.20",
+            "venue": "TR+93",
+            "remark": "Teaching Wk2-13"
+          }
+        ],
+        "32240": [
+          {
+            "type": "Tut",
+            "group": "EE07",
+            "day": "Fri",
+            "time": "14.30 - 16.20",
+            "venue": "TR+64",
+            "remark": "Teaching Wk2-13"
+          }
+        ]
+      },
+      "id": 21
     }
   ]
 }
