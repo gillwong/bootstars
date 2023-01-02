@@ -31,7 +31,7 @@ const GridSchedule = ({ pos, prevTableContent, setPrevTableContent, tableContent
       let endTime = dayjs(timeEnd, "HH.mm");
       let duration = endTime.diff(startTime, "h", true);
 
-      newTableContent[parseInt(timeStart.substring(0, 2)) - 6][DAYS.findIndex(element => element === item.schedules[indexDrop][i].day) + 1] = {
+      newTableContent[parseInt(timeStart.substring(0, 2)) - 7][DAYS.findIndex(element => element === item.schedules[indexDrop][i].day) + 1] = {
         course: item,
         indexDrop,
         timeStart,
@@ -73,12 +73,12 @@ const GridSchedule = ({ pos, prevTableContent, setPrevTableContent, tableContent
 
   useEffect(() => {
     if(isOver && canDrop && indexDrop) {
-      console.log({ isOver, prevTableContent, tableContent });
+      // console.log({ isOver, prevTableContent, tableContent });
       const newPrevTableContent = structuredClone(tableContent);
       setPrevTableContent(newPrevTableContent);
       addToTable(itemObj);
     } else if(!isOver && canDrop && indexDrop) {
-      console.log({ isOver, prevTableContent, tableContent });
+      // console.log({ isOver, prevTableContent, tableContent });
       const newTableContent = structuredClone(prevTableContent);
       setTableContent(newTableContent);
     }
@@ -86,15 +86,26 @@ const GridSchedule = ({ pos, prevTableContent, setPrevTableContent, tableContent
 
   return (
     <Grid2 
-      ref={drop}
       xs={1} 
       textAlign="left"
       sx={{
         position: "relative",
         padding: 0,
-        backgroundColor: canDrop ? isOver ? "navy" : "lightblue" : ""
+        backgroundColor: canDrop ? isOver ? "navy" : "lightblue" : "",
       }}
     >
+      <Grid2
+        ref={drop}
+        sx={{
+          position: "relative",
+          width: "100%",
+          height: "100%",
+          margin: 0,
+          zIndex: isOver ? 5 : 0,
+        }}
+      >
+        
+      </Grid2>
       {tableContent[pos[0]][pos[1]] && 
         <CourseCardMini 
           course={tableContent[pos[0]][pos[1]].course} 

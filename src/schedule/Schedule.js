@@ -1,9 +1,31 @@
-import { Box, Toolbar, Typography } from "@mui/material";
+import { Box, styled, Toolbar, Typography } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import { Fragment, useEffect, useState } from "react";
+import { ON } from "../services/constants";
 import GridSchedule from "./GridSchedule";
 
-const Schedule = ({ sidebarState, onLoadPage }) => {
+const ScheduleWrapper = styled("main", { shouldForwardProp: prop => prop !== "sideBarState" })(
+  ({ theme, sidebarState, rightSidebarState }) => ({
+    flexGrow: 1,
+    padding: theme.spacing(1),
+    // Transition when sidebar(s) closes
+    transition: theme.transitions.create("margin", {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen
+    }),
+    marginLeft: `${sidebarState === ON ? "20%" : "0%"}`,
+    marginRight: `${rightSidebarState === ON ? "25%" : "0%"}`,
+    // Transition when sidebar(s) opens
+    ...(sidebarState === ON && {
+      transition: theme.transitions.create("margin", {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen
+      })
+    })
+  })
+);
+
+const Schedule = ({ sidebarState, rightSidebarState, onLoadPage }) => {
   const [prevTableContent, setPrevTableContent] = useState([]);
   const [tableContent, setTableContent] = useState([
     ["Time", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
@@ -28,6 +50,7 @@ const Schedule = ({ sidebarState, onLoadPage }) => {
   return (
     <Box sx={{ flexGrow: 1, py: 2}}>
       <Toolbar />
+      <ScheduleWrapper sidebarState={sidebarState} rightSidebarState={rightSidebarState}>
       <Grid2 
         container
         spacing={2}
@@ -70,6 +93,7 @@ const Schedule = ({ sidebarState, onLoadPage }) => {
         )}
         
       </Grid2>
+      </ScheduleWrapper>
     </Box>
   );
 }

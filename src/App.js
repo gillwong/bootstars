@@ -86,7 +86,7 @@ function App() {
           {pageTitle === "Schedule" && <>
             <SidebarMUI sidebarState={sidebarState} />
             <RightSidebar {...courseListProps} rightSidebarState={rightSidebarState} setRightSidebarState={setRightSidebarState} focused={focused} setMouseLeft={setMouseLeft} />
-            <Schedule sidebarState={sidebarState} onLoadPage={() => setPageTitle("Schedule")} />
+            <Schedule sidebarState={sidebarState} rightSidebarState={rightSidebarState} onLoadPage={() => setPageTitle("Schedule")} />
           </>}
           
           <Row className="mh-100">
