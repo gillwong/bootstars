@@ -1,3 +1,4 @@
+import { blueGrey } from "@mui/material/colors";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
@@ -104,20 +105,17 @@ const GridSchedule = ({
       sx={{
         position: "relative",
         padding: 0,
-        backgroundColor: canDrop ? isOver ? "navy" : "lightblue" : "",
+        backgroundColor: canDrop ? isOver ? blueGrey[300] : blueGrey[50] : "",
       }}
     >
       <Grid2
         ref={drop}
         sx={{
           position: "relative",
-          width: "100%",
-          height: "100%",
           margin: 0,
           zIndex: isOver ? 10 : 0,
-          // debug
-          backgroundColor: "red",
-          opacity: "50%"
+          // backgroundColor: "red",
+          // opacity: "50%"
         }}
       >
 
