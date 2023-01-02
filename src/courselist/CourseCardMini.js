@@ -1,12 +1,20 @@
 import { Card, CardContent, Typography } from "@mui/material";
-import { useState } from "react";
+import PropTypes from "prop-types";
+import React, { useState } from "react";
 
-const CourseCardMini = ({ course, index, timing, mt, height, group }) => {
+const CourseCardMini = ({
+  course,
+  index,
+  timing,
+  mt,
+  height,
+  group
+}) => {
   const [hovered, setHovered] = useState(false);
 
   return (
-    <Card  
-      sx={{ 
+    <Card
+      sx={{
         backgroundColor: "secondary.main",
         color: "white",
         position: "absolute",
@@ -20,35 +28,44 @@ const CourseCardMini = ({ course, index, timing, mt, height, group }) => {
       onMouseLeave={() => setHovered(false)}
     >
       <CardContent sx={{ padding: 1 }}>
-        <Typography 
+        <Typography
           variant="subtitle2"
         >
           {course.code}
         </Typography>
-        <Typography 
+        <Typography
           variant="body1"
         >
           {timing}
         </Typography>
-        <Typography 
+        <Typography
           variant="body1"
         >
           {index}
         </Typography>
-        <Typography 
+        <Typography
           variant="body1"
         >
           {group.type} {group.group}
         </Typography>
-        <Typography 
+        <Typography
           variant="body1"
         >
           {group.venue}
         </Typography>
       </CardContent>
-      
+
     </Card>
   );
-}
- 
+};
+
+CourseCardMini.propTypes = {
+  course: PropTypes.object,
+  index: PropTypes.number,
+  timing: PropTypes.string,
+  mt: PropTypes.number,
+  height: PropTypes.number,
+  group: PropTypes.object
+};
+
 export default CourseCardMini;

@@ -1,20 +1,28 @@
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
+import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+import duration from "dayjs/plugin/duration";
+import timezone from "dayjs/plugin/timezone";
+import utc from "dayjs/plugin/utc";
+import PropTypes from "prop-types";
+import React, { useEffect, useState } from "react";
 import { useDrop } from "react-dnd";
+
 import CourseCardMini from "../courselist/CourseCardMini";
 import { DAYS, ItemTypes } from "../services/constants";
-import dayjs from 'dayjs';
-import customParseFormat from 'dayjs/plugin/customParseFormat';
-import timezone from 'dayjs/plugin/timezone';
-import utc from 'dayjs/plugin/utc';
-import duration from 'dayjs/plugin/duration';
-import { useEffect, useState } from "react";
 
 dayjs.extend(customParseFormat);
 dayjs.extend(utc);
 dayjs.extend(timezone);
 dayjs.extend(duration);
 
-const GridSchedule = ({ pos, prevTableContent, setPrevTableContent, tableContent, setTableContent, children }) => {
+const GridSchedule = ({
+  pos,
+  prevTableContent,
+  setPrevTableContent,
+  tableContent,
+  setTableContent
+}) => {
   const day = DAYS[pos[1] - 1];
   let timeStart = `${6 + pos[0]}.00`;
   let timeEnd;
@@ -39,10 +47,10 @@ const GridSchedule = ({ pos, prevTableContent, setPrevTableContent, tableContent
         timing: `${timeStart} - ${timeEnd}`,
         duration,
         group: item.schedules[indexDrop][i]
-      }
+      };
     }
     setTableContent(newTableContent);
-  }
+  };
 
   const [{ isOver, canDrop, itemObj }, drop] = useDrop(() => ({
     accept: ItemTypes.COURSE,
@@ -69,7 +77,7 @@ const GridSchedule = ({ pos, prevTableContent, setPrevTableContent, tableContent
       canDrop: !!monitor.canDrop(),
       itemObj: monitor.getItem()
     })
-  }), [pos])
+  }), [pos]);
 
   useEffect(() => {
     if(isOver && canDrop && indexDrop) {
@@ -82,11 +90,11 @@ const GridSchedule = ({ pos, prevTableContent, setPrevTableContent, tableContent
       const newTableContent = structuredClone(prevTableContent);
       setTableContent(newTableContent);
     }
-  }, [isOver])
+  }, [isOver]);
 
   return (
-    <Grid2 
-      xs={1} 
+    <Grid2
+      xs={1}
       textAlign="left"
       sx={{
         position: "relative",
@@ -104,12 +112,12 @@ const GridSchedule = ({ pos, prevTableContent, setPrevTableContent, tableContent
           zIndex: isOver ? 5 : 0,
         }}
       >
-        
+
       </Grid2>
-      {tableContent[pos[0]][pos[1]] && 
-        <CourseCardMini 
-          course={tableContent[pos[0]][pos[1]].course} 
-          index={tableContent[pos[0]][pos[1]].indexDrop} 
+      {tableContent[pos[0]][pos[1]] &&
+        <CourseCardMini
+          course={tableContent[pos[0]][pos[1]].course}
+          index={parseInt(tableContent[pos[0]][pos[1]].indexDrop)}
           timing={tableContent[pos[0]][pos[1]].timing}
           mt={tableContent[pos[0]][pos[1]].timeStart.substring(3) === "30" ? 2.5 : 0}
           height={tableContent[pos[0]][pos[1]].duration}
@@ -118,6 +126,14 @@ const GridSchedule = ({ pos, prevTableContent, setPrevTableContent, tableContent
       }
     </Grid2>
   );
-}
+};
+
+GridSchedule.propTypes = {
+  pos: PropTypes.array,
+  prevTableContent: PropTypes.array,
+  setPrevTableContent: PropTypes.func,
+  tableContent: PropTypes.array,
+  setTableContent: PropTypes.func
+};
 
 export default GridSchedule;

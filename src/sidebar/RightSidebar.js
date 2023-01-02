@@ -1,13 +1,16 @@
 import { Drawer, Toolbar } from "@mui/material";
-import CourseListMUI from "../courselist/CourseListMUI";
+import PropTypes from "prop-types";
+import React from "react";
 
-const RightSidebar = ({ 
-  rightSidebarState, 
-  courses, 
+import CourseList from "../courselist/CourseList";
+
+const RightSidebar = ({
+  rightSidebarState,
+  courses,
   focused,
-  courseFilter, 
-  handleDelete, 
-  setRightSidebarState, 
+  courseFilter,
+  handleDelete,
+  setRightSidebarState,
   setMouseLeft
 }) => {
 
@@ -15,7 +18,7 @@ const RightSidebar = ({
     courses,
     courseFilter,
     handleDelete
-  }
+  };
 
   return (
     <Drawer
@@ -32,16 +35,26 @@ const RightSidebar = ({
       sx={{
         width: 1/4,
         "& .MuiDrawer-paper": {
-          width: 1/4, 
-          boxSizing: "border-box", 
+          width: 1/4,
+          boxSizing: "border-box",
           boxShadow: 3
         }
       }}
     >
       <Toolbar />
-      <CourseListMUI {...courseListProps} />
+      <CourseList {...courseListProps} columns={1} onLoadPage={() => {}} />
     </Drawer>
   );
-}
- 
+};
+
+RightSidebar.propTypes = {
+  rightSidebarState: PropTypes.bool,
+  courses: PropTypes.array,
+  focused: PropTypes.bool,
+  courseFilter: PropTypes.string,
+  handleDelete: PropTypes.func,
+  setRightSidebarState: PropTypes.func,
+  setMouseLeft: PropTypes.func
+};
+
 export default RightSidebar;

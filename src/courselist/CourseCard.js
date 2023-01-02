@@ -1,41 +1,86 @@
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import Col from 'react-bootstrap/esm/Col';
-import Container from 'react-bootstrap/esm/Container';
-import { Link } from 'react-router-dom';
+import { DeleteOutline, InfoOutlined, ModeEditOutlineOutlined } from "@mui/icons-material";
+import { Card, CardActions, CardContent, IconButton, Typography } from "@mui/material";
+import { blueGrey } from "@mui/material/colors";
+import PropTypes from "prop-types";
+import React from "react";
+import { useDrag } from "react-dnd";
+import { Link } from "react-router-dom";
+
+import { ItemTypes } from "../services/constants";
 
 const CourseCard = ({ course, handleDelete }) => {
+  const [{ isDragging }, drag] = useDrag(() => ({
+    type: ItemTypes.COURSE,
+    item: () => ({
+      ...course
+    }),
+    collect: monitor => ({
+      isDragging: !!monitor.isDragging()
+    })
+  }));
+
   return (
-    <Col className="px-2 py-2" sm="12" md="6" lg="4" xl="3">
-      <Card text="dark" bg="light" className="m-0 w-100 h-100">
-        <Card.Header className="fw-light">{course.grading}</Card.Header>
-        
-        <Card.Body className="d-flex flex-wrap">
-          <Container className="p-0 d-inline">
-            
-            <Card.Title>{course.title}</Card.Title>
-            <Card.Subtitle className="mb-2 text-muted">{course.code}</Card.Subtitle>
-
-            <Container className="p-0 d-flex justify-content-between">
-              <Card.Text className="p-0 text-start">by {course.school}</Card.Text>
-              <Card.Text className="p-0 text-end">{course.au} AU</Card.Text>
-            </Container>
-            
-          </Container>
-
-          <Container className="p-0 mt-3 d-flex align-items-end justify-content-between">
-            
-            <Link to={`/view/${course.id}`}><Button size="sm" variant="primary" className="px-4">View</Button></Link>
-
-            <Link to={`/edit/${course.id}`}><Button size="sm" variant="secondary" className="px-3">Edit</Button></Link>
-
-            <Button onClick={() => handleDelete(course.id)} size="sm" variant="outline-danger">Delete</Button>
-
-          </Container>
-        </Card.Body>
-      </Card>
-    </Col>
+    <Card
+      ref={drag}
+      sx={{
+        margin: 1,
+        backgroundColor: blueGrey[50],
+        opacity: isDragging ? 0.5 : 1
+      }}
+    >
+      <CardContent>
+        <Typography
+          color="text.secondary"
+          sx={{ fontWeight: "light" }}
+          gutterBottom
+        >
+          {course.grading}
+        </Typography>
+        <Typography
+          variant="h6"
+          sx={{ lineHeight: 1.25 }}
+          gutterBottom
+        >
+          {course.title}
+        </Typography>
+        <Typography
+          variant="subtitle2"
+          color="text.secondary"
+        >
+          {course.code}
+        </Typography>
+        <Typography
+          variant="body1"
+          display="inline"
+        >
+          by {course.school}
+        </Typography>
+        <Typography
+          variant="body1"
+          display="inline"
+          sx={{ float: "right" }}
+        >
+          {course.au} AU
+        </Typography>
+      </CardContent>
+      <CardActions disableSpacing>
+        <Link to={`/view/${course.id}`}><IconButton><InfoOutlined /></IconButton></Link>
+        <Link to={`/edit/${course.id}`}><IconButton><ModeEditOutlineOutlined /></IconButton></Link>
+        <IconButton
+          color="warning"
+          onClick={() => handleDelete(course.id)}
+          sx={{ ml: "auto" }}
+        >
+          <DeleteOutline />
+        </IconButton>
+      </CardActions>
+    </Card>
   );
-}
- 
+};
+
+CourseCard.propTypes = {
+  course: PropTypes.object,
+  handleDelete: PropTypes.func
+};
+
 export default CourseCard;

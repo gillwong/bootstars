@@ -1,20 +1,61 @@
-import Col from 'react-bootstrap/Col';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import Button from 'react-bootstrap/esm/Button';
-import { useNavigate } from 'react-router-dom';
+import { Add, CalendarMonth, ListTwoTone } from "@mui/icons-material";
+import { Box, Divider, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar } from "@mui/material";
+import PropTypes from "prop-types";
+import React from "react";
+import { useNavigate } from "react-router";
 
-const Sidebar = () => {
+const Sidebar = ({ sidebarState }) => {
   const navigate = useNavigate();
-  
+
   return (
-    <Col xs="auto" md="2" className="px-0 border-end">
-      <ButtonGroup vertical className="d-flex w-100">
-        <Button onClick={() => navigate("/schedule")} variant="light text-start" className="rounded-0">My Schedule</Button>
-        <Button onClick={() => navigate("/")}  variant="light text-start" className="rounded-0">Course List</Button>
-        <Button onClick={() => navigate("/add")}  variant="light text-start" className="rounded-0">Add Course</Button>
-      </ButtonGroup>
-    </Col>
+    <Drawer
+      variant="persistent"
+      anchor="left"
+      open={sidebarState}
+      sx={{
+        width: 1/5,
+        flexShrink: 0,
+        "& .MuiDrawer-paper": {
+          width: 1/5,
+          boxSizing: "border-box",
+          boxShadow: 3
+        },
+      }}
+    >
+      <Toolbar />
+      <Box sx={{ overflow: "auto" }}>
+        <List>
+          <ListItem disablePadding>
+            <ListItemButton
+              onClick={() => navigate("/schedule")}
+            >
+              <ListItemIcon><CalendarMonth /></ListItemIcon>
+              <ListItemText>My Schedule</ListItemText>
+            </ListItemButton>
+          </ListItem>
+          <ListItem disablePadding>
+            <ListItemButton
+              onClick={() => navigate("/")}
+            >
+              <ListItemIcon><ListTwoTone /></ListItemIcon>
+              <ListItemText>Course List</ListItemText>
+            </ListItemButton>
+          </ListItem>
+          <ListItem disablePadding>
+            <ListItemButton
+              onClick={() => navigate("/add")}
+            >
+              <ListItemIcon><Add /></ListItemIcon>
+              <ListItemText>Add Course</ListItemText>
+            </ListItemButton>
+          </ListItem>
+        </List>
+        <Divider />
+      </Box>
+    </Drawer>
   );
-}
- 
+};
+
+Sidebar.propTypes = { sidebarState: PropTypes.bool };
+
 export default Sidebar;

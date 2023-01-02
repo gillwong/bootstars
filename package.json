@@ -6,6 +6,7 @@
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@mui/icons-material": "^5.11.0",
+    "@mui/lab": "^5.0.0-alpha.114",
     "@mui/material": "^5.11.2",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -14,6 +15,7 @@
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.10.2",
     "dayjs": "^1.11.7",
+    "prop-types": "^15.8.1",
     "rdndmb-html5-to-touch": "^8.0.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.0",
@@ -32,7 +34,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server": "json-server -p8000 --watch data/db.json"
+    "server": "json-server -p8000 --watch data/db.json",
+    "lint": "eslint ."
   },
   "eslintConfig": {
     "extends": [
@@ -53,6 +56,10 @@
     ]
   },
   "devDependencies": {
-    "json-server": "^0.17.1"
+    "eslint": "^8.31.0",
+    "eslint-plugin-react": "^7.31.11",
+    "eslint-plugin-simple-import-sort": "^8.0.0",
+    "json-server": "^0.17.1",
+    "unimported": "^1.24.0"
   }
 }
