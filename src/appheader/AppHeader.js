@@ -1,7 +1,7 @@
-import { ChevronLeft, ChevronRight, Close, Menu } from "@mui/icons-material";
-import { AppBar, Box, IconButton, Toolbar, Typography } from "@mui/material";
+import { ChevronLeft, ChevronRight, Close, Menu, Search } from "@mui/icons-material";
+import { AppBar, Box, IconButton, Popover, Toolbar, Typography, useMediaQuery, useTheme } from "@mui/material";
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useState } from "react";
 
 import SearchCourse from "./SearchCourse";
 
@@ -17,6 +17,11 @@ const AppHeader = ({
   setRightSidebarState,
   setFocused
 }) => {
+  const theme = useTheme();
+  const isMd = useMediaQuery(theme.breakpoints.down("md"));
+
+  const [anchorEl, setAnchorEl] = useState(null);
+
   const searchCourseProps = {
     courseFilter,
     setCourseFilter,
@@ -35,9 +40,7 @@ const AppHeader = ({
           {sidebarState ? <Close /> : <Menu />}
         </IconButton>
 
-        <Typography variant="h6" ml={2}>
-          Material STARS
-        </Typography>
+        <Typography variant="h6" ml={2}>Material STARS</Typography>
 
         <Box
           sx={{
@@ -47,24 +50,57 @@ const AppHeader = ({
             flexGrow: 1
           }}
         >
-          {pageTitle === "Schedule" ? <><IconButton
-            size="large"
-            color="inherit"
-            onClick={handleWeek.left}
-          >
-            <ChevronLeft />
-          </IconButton>
-          <Typography>Week {week}</Typography>
-          <IconButton
-            size="large"
-            color="inherit"
-            onClick={handleWeek.right}
-          >
-            <ChevronRight />
-          </IconButton></> : <Typography variant="h6">{pageTitle}</Typography>}
+          {pageTitle === "Schedule"
+            ?
+            <>
+              <IconButton
+                size="large"
+                color="inherit"
+                onClick={handleWeek.left}
+              >
+                <ChevronLeft />
+              </IconButton>
+              <Typography>Week {week}</Typography>
+              <IconButton
+                size="large"
+                color="inherit"
+                onClick={handleWeek.right}
+              >
+                <ChevronRight />
+              </IconButton>
+            </>
+            : <Typography variant="h6">{pageTitle}</Typography>
+          }
         </Box>
-
-        <SearchCourse {...searchCourseProps} setFocused={setFocused} mouseLeft={mouseLeft} />
+        {isMd
+          ?
+          <>
+            <IconButton
+              size="large"
+              color="inherit"
+              edge="end"
+              onClick={e => setAnchorEl(e.currentTarget)}
+            >
+              <Search />
+            </IconButton>
+            <Popover
+              open={Boolean(anchorEl)}
+              anchorEl={anchorEl}
+              onClose={() => setAnchorEl(null)}
+              anchorOrigin={{
+                vertical: "center",
+                horizontal: "right"
+              }}
+              transformOrigin={{
+                vertical: "center",
+                horizontal: "right"
+              }}
+            >
+              <SearchCourse {...searchCourseProps} setFocused={setFocused} mouseLeft={mouseLeft} />
+            </Popover>
+          </>
+          : <SearchCourse {...searchCourseProps} setFocused={setFocused} mouseLeft={mouseLeft} />
+        }
       </Toolbar>
     </AppBar>
   );

@@ -25,7 +25,7 @@ const GridSchedule = ({
   setTableContent
 }) => {
   const day = DAYS[pos[1] - 1];
-  let timeStart = `${6 + pos[0]}.00`;
+  let timeStart = `${6 + pos[0] < 10 ? "0" : ""}${6 + pos[0]}.00`;
   let timeEnd;
   const [indexDrop, setIndexDrop] = useState();
 
@@ -113,7 +113,9 @@ const GridSchedule = ({
         sx={{
           position: "relative",
           margin: 0,
+          height: "100%",
           zIndex: isOver ? 10 : 0,
+          // debug
           // backgroundColor: "red",
           // opacity: "50%"
         }}
@@ -125,7 +127,7 @@ const GridSchedule = ({
           course={tableContent[pos[0]][pos[1]].course}
           index={tableContent[pos[0]][pos[1]].indexDrop}
           timing={tableContent[pos[0]][pos[1]].timing}
-          mt={tableContent[pos[0]][pos[1]].timeStart.substring(3) === "30" ? 2.5 : 0}
+          mt={tableContent[pos[0]][pos[1]].timeStart.substring(3) === "30" ? 3 : 0}
           height={tableContent[pos[0]][pos[1]].duration}
           group={tableContent[pos[0]][pos[1]].group}
         />

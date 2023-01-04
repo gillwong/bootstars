@@ -1,4 +1,4 @@
-import { Box, Toolbar, Typography } from "@mui/material";
+import { Box, Toolbar, Typography, useMediaQuery, useTheme } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import PropTypes from "prop-types";
 import React, { Fragment, useEffect, useState } from "react";
@@ -6,6 +6,9 @@ import React, { Fragment, useEffect, useState } from "react";
 import GridSchedule from "./GridSchedule";
 
 const Schedule = ({ onLoadPage }) => {
+  const theme = useTheme();
+  const isMd = useMediaQuery(theme.breakpoints.up("md"));
+
   const [prevTableContent, setPrevTableContent] = useState([]);
   const [tableContent, setTableContent] = useState([
     ["Time", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
@@ -54,11 +57,21 @@ const Schedule = ({ onLoadPage }) => {
             {i === 0
               ? row.map((content, j) =>
                 <Grid2 key={j} xs={1} textAlign="center">
-                  <Typography variant="button" color="text.secondary">{content}</Typography>
+                  {isMd
+                    ? <Typography variant="button" color="text.secondary">{content}</Typography>
+                    : <Typography variant="button" color="text.secondary">{content !== "Time" ? content.substring(0, 3) : content}</Typography>
+                  }
                 </Grid2>)
               : row.map((content, j) =>
                 j === 0
-                  ? <Grid2 key={j} xs={1} textAlign="right">
+                  ? <Grid2
+                    key={j}
+                    xs={1}
+                    textAlign="right"
+                    sx={{
+                      pt: 2,
+                    }}
+                  >
                     <Typography variant="button" color="text.secondary" sx={{ display: "block", mt: 1, mb: -1, mr: -0.5 }}>{content}</Typography>
                   </Grid2>
                   : <GridSchedule

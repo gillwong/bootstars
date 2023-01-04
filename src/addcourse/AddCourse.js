@@ -1,4 +1,5 @@
-import { Toolbar } from "@mui/material";
+import { Add } from "@mui/icons-material";
+import { Fab, Toolbar, Zoom } from "@mui/material";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import duration from "dayjs/plugin/duration";
@@ -30,7 +31,6 @@ const AddCourse = ({
   handleEdit,
   onLoadPage
 }) => {
-
   let selectedIndex = new Set();
   const { id } = useParams();  // undefined if no parameter id exists
 
@@ -545,7 +545,26 @@ const AddCourse = ({
             /></Col>
             <Col><Button onClick={handleParse}>Parse</Button></Col>
           </Row></>}
-        {mode === "ADD" && <Button variant="success" type="submit">Add Course</Button>}
+        {mode === "ADD" && <Zoom
+          in={true}
+        >
+          <Fab
+            variant="extended"
+            color="success"
+            type="submit"
+            sx={{
+              margin: 0,
+              position: "fixed",
+              top: "auto",
+              right: 20,
+              bottom: 20,
+              left: "auto",
+              pr: 3
+            }}
+          >
+            <Add sx={{ mr: 1 }} />Add Course
+          </Fab>
+        </Zoom>}
         {mode === "EDIT" && <>
           <Button variant="success" type="submit">Edit Course</Button>
           <Button variant="outline-danger" className="float-end" onClick={() => navigate(-1)}>Cancel</Button></>}
