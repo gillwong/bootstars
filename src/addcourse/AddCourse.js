@@ -30,7 +30,6 @@ const AddCourse = ({
   handleEdit,
   onLoadPage
 }) => {
-
   let selectedIndex = new Set();
   const { id } = useParams();  // undefined if no parameter id exists
 
@@ -39,20 +38,21 @@ const AddCourse = ({
 
   const [ addIndex, setAddIndex] = useState("");
   const [ hasFinals, toggleHasFinals ] = useState(false);
-  const [ name, setName ] = useState("");
+
   const [ code, setCode ] = useState("");
-  const [ au, setAu ] = useState(3);
+  const [ title, setTitle ] = useState("");
   const [ school, setSchool ] = useState("");
+  const [ au, setAu ] = useState(3);
+  const [ grading, setGrading ] = useState("Letter-Graded");
   const [ prereqStr, setPrereqStr ] = useState("");
   const [ exclusiveStr, setExclusiveStr ] = useState("");
   const [ progExc, setProgExc ] = useState("");
   const [ ayExc, setAyExc ] = useState("");
   const [ bde, toggleBde ] = useState(true);
   const [ gerpe, toggleGerpe ] = useState(true);
-  const [ grading, setGrading ] = useState("Letter-Graded");
   const [ examSchedule, setExamSchedule ] = useState(new Date());
   const [ duration, setDuration ] = useState(1);
-  const [ schedules, setSchedules ] = useState({});
+  const [ schedules, setSchedules ] = useState(new Map());
 
   const navigate = useNavigate();
 
@@ -63,7 +63,7 @@ const AddCourse = ({
       coursesServices.getData(id)
         .then(returnedCourse => {
           toggleHasFinals(returnedCourse.examSchedule !== "Not Applicable");
-          setName(returnedCourse.title);
+          setTitle(returnedCourse.title);
           setCode(returnedCourse.code);
           setAu(returnedCourse.au);
           setSchool(returnedCourse.school);
@@ -76,6 +76,9 @@ const AddCourse = ({
           setGrading(returnedCourse.grading);
           setExamSchedule(returnedCourse.examSchedule !== "Not Applicable" ? returnedCourse.examSchedule : new Date());
           setDuration(returnedCourse.examDuration);
+          // Convert Object to Map
+          returnedCourse.schedules = new Map(Object.entries(returnedCourse.schedules));
+
           setSchedules(returnedCourse.schedules);
         })
         .catch(err => console.error(err));
@@ -86,7 +89,7 @@ const AddCourse = ({
     e.preventDefault();
     let newCourse = {
       code,
-      title: name,
+      title,
       school,
       au,
       grading,
@@ -100,6 +103,7 @@ const AddCourse = ({
       examDuration: hasFinals ? duration : 0,
       schedules
     };
+
     switch(mode) {
     case "EDIT":
       newCourse["id"] = id;
@@ -116,8 +120,10 @@ const AddCourse = ({
   };
 
   const changeSchedules = (index, subIndex, property, value) => {
-    const updatedSchedules = { ...schedules };
-    updatedSchedules[index][subIndex][property] = value;
+    const updatedSchedules = new Map([...schedules]);
+    let updatedGroups = updatedSchedules.get(index);
+    updatedGroups[subIndex][property] = value;
+    updatedSchedules.set(index, updatedGroups);
     setSchedules(updatedSchedules);
   };
 
@@ -162,26 +168,26 @@ const AddCourse = ({
 
       const scheduleNodesSnapshot = parsedDocument.evaluate("//table[@border=\"1\"]/tbody/tr[1]/following-sibling::tr", parsedDocument, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
 
-      let schedulesParsed = {};
+      let schedulesParsed = new Map();
       let indexParsed;
       const regexpTime = /([0-9]{2})([0-9]{2})to([0-9]{2})([0-9]{2})/;
 
-      for(let i=0; i < scheduleNodesSnapshot.snapshotLength; i++) {
+      for(let i = 0; i < scheduleNodesSnapshot.snapshotLength; i++) {
         const scheduleNode = scheduleNodesSnapshot.snapshotItem(i);
         if(!isNaN(parseInt(scheduleNode.children[0].innerText.trim()))) {
           indexParsed = scheduleNode.children[0].innerText.trim();
-          schedulesParsed[parseInt(indexParsed)] = [];
+          schedulesParsed.set(indexParsed, []);
         }
 
         const match = scheduleNode.children[4].innerText.trim().match(regexpTime);
-        schedulesParsed[parseInt(indexParsed)].push({
+        schedulesParsed.set(indexParsed, [...schedulesParsed.get(indexParsed), {
           type: scheduleNode.children[1].innerText.trim(),
           group: scheduleNode.children[2].innerText.trim(),
           day: scheduleNode.children[3].innerText.trim(),
           time: `${match[1]}.${match[2]} - ${match[3]}.${match[4]}`,
           venue: scheduleNode.children[5].innerText.trim(),
           remark: scheduleNode.children[6].innerText.trim()
-        });
+        }]);
       }
 
       let examScheduleParsedProcessed, examDurationProcessed;
@@ -195,7 +201,7 @@ const AddCourse = ({
       }
 
       toggleHasFinals(examScheduleParsed !== "Not Applicable");
-      setName(nameParsed);
+      setTitle(nameParsed);
       setCode(codeParsed);
       setAu(auParsed);
       setSchool(schoolParsed);
@@ -226,8 +232,8 @@ const AddCourse = ({
               disabled={mode === "VIEW"}
               type="text"
               placeholder="Enter Course Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
             />
           </Form.Group>
         </Row>
@@ -261,6 +267,7 @@ const AddCourse = ({
           <Col><Form.Group>
             <Form.Label>School/College</Form.Label>
             <Form.Control
+              required
               disabled={mode === "VIEW"}
               type="text"
               placeholder="Enter School/College"
@@ -438,63 +445,68 @@ const AddCourse = ({
               </tr>
             </thead>
             <tbody>
-              {Object.keys(schedules).filter(scheduleIndex => scheduleIndex.toString().indexOf(indexFilter) !== -1).map(scheduleIndex => <Fragment key={scheduleIndex}>{
-                schedules[scheduleIndex].map((_, i) =>
-                  <tr key={i}>
-                    {i === 0 && <>
-                      <td rowSpan={schedules[scheduleIndex].length} className="align-middle">
-                        {mode !== "VIEW" && <Form.Check
-                          type="checkbox"
-                          name="checkboxSchedules"
-                          onClick={() => {
-                            if(selectedIndex.has(scheduleIndex)) {
-                              selectedIndex.delete(scheduleIndex);
-                            } else {
-                              selectedIndex.add(scheduleIndex);
-                            }
-                          }}
-                        />}
-                      </td>
-                      <td rowSpan={schedules[scheduleIndex].length} className="align-middle position-relative">
-                        <span className="me-4">{scheduleIndex}</span>
-                        <Container className={`px-0 mt-2 ${schedules[scheduleIndex].length > 2 && "position-absolute bottom-0 start-0 pb-2 ms-2"}`}>
-                          {mode !== "VIEW" && <Button
+              {[...schedules.keys()]
+                .filter(scheduleIndex => scheduleIndex.indexOf(indexFilter) !== -1)
+                .map(scheduleIndex =>
+                  <Fragment key={scheduleIndex}>
+                    {schedules.get(scheduleIndex).map((_, i) =>
+                      <tr key={i}>
+                        {i === 0 && <>
+                          <td rowSpan={schedules.get(scheduleIndex).length} className="align-middle">
+                            {mode !== "VIEW" && <Form.Check
+                              type="checkbox"
+                              name="checkboxSchedules"
+                              onClick={() => {
+                                if(selectedIndex.has(scheduleIndex)) {
+                                  selectedIndex.delete(scheduleIndex);
+                                } else {
+                                  selectedIndex.add(scheduleIndex);
+                                }
+                              }}
+                            />}
+                          </td>
+                          <td rowSpan={schedules.get(scheduleIndex).length} className="align-middle position-relative">
+                            <span className="me-4">{scheduleIndex}</span>
+                            <Container className={`px-0 mt-2 ${schedules.get(scheduleIndex).length > 2 && "position-absolute bottom-0 start-0 pb-2 ms-2"}`}>
+                              {mode !== "VIEW" && <Button
+                                size="sm"
+                                variant="outline-secondary"
+                                className="d-flex align-items-center p-2"
+                                onClick={() => {
+                                  let newSchedules = new Map([...schedules]);
+                                  newSchedules.set(scheduleIndex, [...newSchedules.get(scheduleIndex), {
+                                    type: "",
+                                    group: "",
+                                    day: "",
+                                    time: "",
+                                    venue: "",
+                                    remark: ""
+                                  }]);
+                                  setSchedules(newSchedules);
+                                }}
+                              ><PlusLg /></Button>}
+                            </Container>
+                          </td>
+                        </>}
+                        <AddSchedule scheduleMap={schedules} index={scheduleIndex} subIndex={i} changeSchedules={changeSchedules} mode={mode} />
+                        <td className="align-middle">
+                          {i !== 0 && mode !== "VIEW" && <Button
                             size="sm"
-                            variant="outline-secondary"
-                            className="d-flex align-items-center p-2"
+                            variant="danger"
+                            className="d-flex align-items-center p-1"
                             onClick={() => {
-                              let newSchedules = { ...schedules };
-                              newSchedules[scheduleIndex].push({
-                                type: "",
-                                group: "",
-                                day: "",
-                                time: "",
-                                venue: "",
-                                remark: ""
-                              });
-                              setSchedules(newSchedules);
+                              let updatedSchedules = new Map([...schedules]);
+                              const filteredGroups = updatedSchedules.get(scheduleIndex).filter((_, j) => j !== i);
+                              updatedSchedules.set(scheduleIndex, filteredGroups);
+                              setSchedules(updatedSchedules);
                             }}
-                          ><PlusLg /></Button>}
-                        </Container>
-                      </td>
-                    </>}
-                    <AddSchedule scheduleObj={schedules} index={scheduleIndex} subIndex={i} changeSchedules={changeSchedules} mode={mode} />
-                    <td className="align-middle">
-                      {i !== 0 && mode !== "VIEW" && <Button
-                        size="sm"
-                        variant="danger"
-                        className="d-flex align-items-center p-1"
-                        onClick={() => {
-                          let updatedSchedules = { ...schedules };
-                          const filtered = updatedSchedules[scheduleIndex].filter((_, j) => j !== i);
-                          updatedSchedules[scheduleIndex] = filtered;
-                          setSchedules(updatedSchedules);
-                        }}
-                      ><DashLg /></Button>}
-                    </td>
-                  </tr>
+                          ><DashLg /></Button>}
+                        </td>
+                      </tr>
+                    )}
+                  </Fragment>
                 )
-              }</Fragment>)}
+              }
             </tbody>
           </Table>
           {mode !== "VIEW" && <Row className="mb-1">
@@ -510,15 +522,15 @@ const AddCourse = ({
               className="d-flex align-items-center h-100"
               onClick={() => {
                 if(!isNaN(parseInt(addIndex))) {
-                  let newSchedules = { ...schedules };
-                  newSchedules[parseInt(addIndex)] = [{
+                  let newSchedules = new Map([...schedules]);
+                  newSchedules.set(addIndex.toString().trim(), [{
                     type: "",
                     group: "",
                     day: "",
                     time: "",
                     venue: "",
                     remark: ""
-                  }];
+                  }]);
                   setSchedules(newSchedules);
                   setAddIndex("");
                 }
@@ -527,10 +539,8 @@ const AddCourse = ({
               size="sm"
               variant="danger"
               onClick={() => {
-                let updatedSchedules = { ...schedules };
-                selectedIndex.forEach((index) => {
-                  delete updatedSchedules[index];  // does not free memory
-                });
+                let updatedSchedules = new Map([...schedules]);
+                selectedIndex.forEach(index => updatedSchedules.delete(index));
                 setSchedules(updatedSchedules);
               }}
             >Delete Selected</Button></Col>

@@ -52,12 +52,18 @@ function App() {
   }, []);
 
   const addCourse = (newCourse) => {
+    // Convert Map to Object
+    newCourse.schedules = Object.fromEntries(newCourse.schedules);
+
     coursesService.create(newCourse)
       .then(returnedCourse => setCourses(courses.concat(returnedCourse)))
       .catch(err => console.error(err));
   };
 
   const editCourse = (updatedCourse) => {
+    // Convert Map to Object
+    updatedCourse.schedules = Object.fromEntries(updatedCourse.schedules);
+
     coursesService.update(updatedCourse)
       .then(returnedCourse => setCourses(courses.map(
         course => course.id === returnedCourse.id ? returnedCourse : course

@@ -11,9 +11,7 @@ import { ItemTypes } from "../services/constants";
 const CourseCard = ({ course, handleDelete }) => {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: ItemTypes.COURSE,
-    item: () => ({
-      ...course
-    }),
+    item: () => ({ ...course }),
     collect: monitor => ({
       isDragging: !!monitor.isDragging()
     })

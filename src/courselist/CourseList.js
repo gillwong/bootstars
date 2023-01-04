@@ -1,5 +1,5 @@
 import { Masonry } from "@mui/lab";
-import { Toolbar } from "@mui/material";
+import { Toolbar, Typography } from "@mui/material";
 import PropTypes from "prop-types";
 import React, { useEffect } from "react";
 
@@ -17,6 +17,7 @@ const CourseList = ({
 
   return (<>
     {!columns && <Toolbar />}
+    {courses.length === 0 && <Typography variant="h5" align="center" color="text.secondary" sx={{ mt: 2 }}>No courses have been added.</Typography>}
     <Masonry
       columns={columns || { xs: 1, sm: 2, md: 3, lg: 4 }}
       spacing="2"
