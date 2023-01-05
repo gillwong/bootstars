@@ -10,12 +10,10 @@ const AppHeader = ({
   pageTitle,
   courseFilter,
   sidebarState,
-  mouseLeft,
   handleHamburger,
   handleWeek,
   setCourseFilter,
   setRightSidebarState,
-  setFocused
 }) => {
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.down("md"));
@@ -87,6 +85,7 @@ const AppHeader = ({
               open={Boolean(anchorEl)}
               anchorEl={anchorEl}
               onClose={() => setAnchorEl(null)}
+              marginThreshold={0}
               anchorOrigin={{
                 vertical: "center",
                 horizontal: "right"
@@ -96,10 +95,10 @@ const AppHeader = ({
                 horizontal: "right"
               }}
             >
-              <SearchCourse {...searchCourseProps} setFocused={setFocused} mouseLeft={mouseLeft} />
+              <SearchCourse {...searchCourseProps} />
             </Popover>
           </>
-          : <SearchCourse {...searchCourseProps} setFocused={setFocused} mouseLeft={mouseLeft} />
+          : <SearchCourse {...searchCourseProps} />
         }
       </Toolbar>
     </AppBar>
@@ -111,12 +110,10 @@ AppHeader.propTypes = {
   pageTitle: PropTypes.string,
   courseFilter: PropTypes.string,
   sidebarState: PropTypes.bool,
-  mouseLeft: PropTypes.bool,
   handleHamburger: PropTypes.func,
   handleWeek: PropTypes.object,
   setCourseFilter: PropTypes.func,
-  setRightSidebarState: PropTypes.func,
-  setFocused: PropTypes.func
+  setRightSidebarState: PropTypes.func
 };
 
 export default AppHeader;

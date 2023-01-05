@@ -56,8 +56,6 @@ function App() {
   const [courses, setCourses] = useState([]);
   const [sidebarState, setSidebarState] = useState(OFF);
   const [rightSidebarState, setRightSidebarState] = useState(OFF);
-  const [focused, setFocused] = useState(false);
-  const [mouseLeft, setMouseLeft] = useState(true);
   const [week, setWeek] = useState(1);
   const [pageTitle, setPageTitle] = useState("Course List");
   const [courseFilter, setCourseFilter] = useState("");
@@ -112,11 +110,11 @@ function App() {
   return (
     <DndProvider backend={MultiBackend} options={HTML5toTouch}>
 
-      <AppHeader {...appHeaderProps} setRightSidebarState={setRightSidebarState} setFocused={setFocused} mouseLeft={mouseLeft} />
+      <AppHeader {...appHeaderProps} setRightSidebarState={setRightSidebarState} />
 
       <Sidebar sidebarState={sidebarState} />
 
-      {pageTitle !== "Course List" && <RightSidebar {...courseListProps} rightSidebarState={rightSidebarState} setRightSidebarState={setRightSidebarState} focused={focused} setMouseLeft={setMouseLeft} />}
+      {pageTitle !== "Course List" && <RightSidebar {...courseListProps} rightSidebarState={rightSidebarState} setRightSidebarState={setRightSidebarState} />}
 
       {!["Add Course", "Edit Course", "View Course"].includes(pageTitle) && <Zoom in={true}><Fab
         color="secondary"

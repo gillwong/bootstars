@@ -83,19 +83,22 @@ const GridSchedule = ({
   const prevValues = useRef({ isOver, canDrop, indexDrop });
 
   useEffect(() => {
-    if(prevValues.isOver !== isOver
-      && prevValues.canDrop !== canDrop
-      && prevValues.indexDrop !== indexDrop) {
-      // console.log({ isOver, prevTableContent, tableContent });
-      if(isOver && canDrop && indexDrop) {
-        const newPrevTableContent = structuredClone(tableContent);
-        setPrevTableContent(newPrevTableContent);
-        addToTable(itemObj);
-      } else if(!isOver && canDrop && indexDrop) {
-        const newTableContent = structuredClone(prevTableContent);
-        setTableContent(newTableContent);
+    const hoverEffect = () => {
+      if(prevValues.isOver !== isOver
+        && prevValues.canDrop !== canDrop
+        && prevValues.indexDrop !== indexDrop) {
+        // console.log({ isOver, prevTableContent, tableContent });
+        if(isOver && canDrop && indexDrop) {
+          const newPrevTableContent = structuredClone(tableContent);
+          setPrevTableContent(newPrevTableContent);
+          addToTable(itemObj);
+        } else if(!isOver && canDrop && indexDrop) {
+          const newTableContent = structuredClone(prevTableContent);
+          setTableContent(newTableContent);
+        }
       }
-    }
+    };
+    hoverEffect();
   }, [isOver]);
 
   return (

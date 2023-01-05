@@ -1,17 +1,16 @@
-import { Drawer, Toolbar } from "@mui/material";
+import { Button, Drawer, Toolbar } from "@mui/material";
 import PropTypes from "prop-types";
 import React from "react";
 
 import CourseList from "../courselist/CourseList";
+import { OFF } from "../services/constants";
 
 const RightSidebar = ({
   rightSidebarState,
   courses,
-  focused,
   courseFilter,
   handleDelete,
   setRightSidebarState,
-  setMouseLeft
 }) => {
 
   const courseListProps = {
@@ -25,13 +24,6 @@ const RightSidebar = ({
       variant="persistent"
       anchor="right"
       open={rightSidebarState}
-      onMouseLeave={() => {
-        setMouseLeft(true);
-        if(!focused) {
-          setRightSidebarState(false);
-        }
-      }}
-      onMouseEnter={() => setMouseLeft(false)}
       sx={{
         width: 1/4,
         "& .MuiDrawer-paper": {
@@ -42,6 +34,14 @@ const RightSidebar = ({
       }}
     >
       <Toolbar />
+      <Button
+        variant="contained"
+        color="warning"
+        sx={{ mx: 1, mt: 2, mb: 0 }}
+        onClick={() => setRightSidebarState(OFF)}
+      >
+        Collapse
+      </Button>
       <CourseList {...courseListProps} columns={1} onLoadPage={() => {}} />
     </Drawer>
   );
@@ -50,11 +50,9 @@ const RightSidebar = ({
 RightSidebar.propTypes = {
   rightSidebarState: PropTypes.bool,
   courses: PropTypes.array,
-  focused: PropTypes.bool,
   courseFilter: PropTypes.string,
   handleDelete: PropTypes.func,
-  setRightSidebarState: PropTypes.func,
-  setMouseLeft: PropTypes.func
+  setRightSidebarState: PropTypes.func
 };
 
 export default RightSidebar;
