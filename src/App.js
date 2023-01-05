@@ -49,6 +49,24 @@ const Main = styled("main", {
 }));
 
 function App() {
+  const [scheduleContent, setScheduleContent] = useState([
+    ["Time", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    ["08.00", "", "", "", "", "", "", ""],
+    ["09.00", "", "", "", "", "", "", ""],
+    ["10.00", "", "", "", "", "", "", ""],
+    ["11.00", "", "", "", "", "", "", ""],
+    ["12.00", "", "", "", "", "", "", ""],
+    ["13.00", "", "", "", "", "", "", ""],
+    ["14.00", "", "", "", "", "", "", ""],
+    ["15.00", "", "", "", "", "", "", ""],
+    ["16.00", "", "", "", "", "", "", ""],
+    ["17.00", "", "", "", "", "", "", ""],
+    ["18.00", "", "", "", "", "", "", ""],
+    ["19.00", "", "", "", "", "", "", ""],
+    ["20.00", "", "", "", "", "", "", ""],
+    ["21.00", "", "", "", "", "", "", ""],
+    ["22.00", "", "", "", "", "", "", ""],
+  ]);
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.down("md"));
   const isSm = useMediaQuery(theme.breakpoints.down("sm"));
@@ -69,12 +87,18 @@ function App() {
   }, []);
 
   const addCourse = (newCourse) => {
+    // Convert Map to Object
+    newCourse.schedules = Object.fromEntries(newCourse.schedules);
+
     coursesService.create(newCourse)
       .then(returnedCourse => setCourses(courses.concat(returnedCourse)))
       .catch(err => console.error(err));
   };
 
   const editCourse = (updatedCourse) => {
+    // Convert Map to Object
+    updatedCourse.schedules = Object.fromEntries(updatedCourse.schedules);
+
     coursesService.update(updatedCourse)
       .then(returnedCourse => setCourses(courses.map(
         course => course.id === returnedCourse.id ? returnedCourse : course
@@ -147,7 +171,10 @@ function App() {
             />
           } />
           <Route path="/schedule" element={
-            <Schedule onLoadPage={() => setPageTitle("Schedule")} />
+            <Schedule
+                tableContent={scheduleContent}
+                setTableContent={setScheduleContent}
+                onLoadPage={() => setPageTitle("Schedule")} />
           } />
           <Route path="/edit/:id" element={
             <AddCourse

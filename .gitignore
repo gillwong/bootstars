@@ -20,7 +20,7 @@
 .eslintrc.js
 .eslintignore
 /.vscode
-/data/db_backup.json
+/data
 ngrok.exe
 
 npm-debug.log*
