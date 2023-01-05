@@ -172,9 +172,9 @@ function App() {
           } />
           <Route path="/schedule" element={
             <Schedule
-                tableContent={scheduleContent}
-                setTableContent={setScheduleContent}
-                onLoadPage={() => setPageTitle("Schedule")} />
+              tableContent={scheduleContent}
+              setTableContent={setScheduleContent}
+              onLoadPage={() => setPageTitle("Schedule")} />
           } />
           <Route path="/edit/:id" element={
             <AddCourse

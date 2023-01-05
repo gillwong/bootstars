@@ -1111,7 +1111,7 @@
           }
         ]
       },
-      "id": 9
+      "id": 1
     },
     {
       "code": "AB0301",
@@ -1148,7 +1148,7 @@
           }
         ]
       },
-      "id": 10
+      "id": 2
     },
     {
       "code": "AAA18D",
@@ -1181,7 +1181,7 @@
           }
         ]
       },
-      "id": 11
+      "id": 3
     },
     {
       "code": "MH1810",
@@ -1263,7 +1263,7 @@
           }
         ]
       },
-      "id": 12
+      "id": 4
     },
     {
       "code": "SC1004",
@@ -2018,7 +2018,7 @@
           }
         ]
       },
-      "id": 13
+      "id": 5
     },
     {
       "code": "SC1006",
@@ -2040,7 +2040,7 @@
       "bde": true,
       "gerpe": false,
       "examSchedule": "2023-04-27T05:00:00.000Z",
-      "examDuration": 1,
+      "examDuration": 1.5,
       "schedules": {
         "10555": [
           {
@@ -3063,7 +3063,7 @@
           }
         ]
       },
-      "id": 14
+      "id": 6
     },
     {
       "code": "CC0002",
@@ -3084,7 +3084,7 @@
       "examSchedule": "Not Applicable",
       "examDuration": 0,
       "schedules": {},
-      "id": 15
+      "id": 7
     },
     {
       "code": "SC1015",
@@ -3714,7 +3714,7 @@
           }
         ]
       },
-      "id": 16
+      "id": 8
     },
     {
       "code": "LJ5001",
@@ -3926,7 +3926,7 @@
           }
         ]
       },
-      "id": 17
+      "id": 9
     },
     {
       "code": "LJ5002",
@@ -4038,41 +4038,14 @@
           }
         ]
       },
-      "id": 18
+      "id": 10
     },
     {
-      "code": "CC0001",
-      "title": "INQUIRY & COMMUNICATION IN AN INTERDISCIPLINARY WORLD",
-      "school": "ICC",
-      "au": 2,
-      "grading": "Letter-Graded",
-      "prereq": [
-        ""
-      ],
-      "exclusive": [
-        "AB0601",
-        "HW0105",
-        "HW0106",
-        "HW0111",
-        "HW0128",
-        "HW0188",
-        "HW0209"
-      ],
-      "programmeExclude": "",
-      "ayExclude": "",
-      "bde": false,
-      "gerpe": false,
-      "examSchedule": "Not Applicable",
-      "examDuration": 0,
-      "schedules": {},
-      "id": 19
-    },
-    {
-      "code": "EG1001",
-      "title": "ENGINEERS IN SOCIETY",
-      "school": "CEE",
-      "au": 2,
-      "grading": "Letter-Graded",
+      "code": "TC0001",
+      "title": "TEST COURSE 1",
+      "school": "PPIT(GTD)",
+      "au": 1,
+      "grading": "Pass/Fail",
       "prereq": [
         ""
       ],
@@ -4080,1376 +4053,120 @@
         ""
       ],
       "programmeExclude": "",
-      "ayExclude": "(Admyr 2011-2020)-Non Direct Entry, (Admyr 2011-2021)-Direct Entry",
-      "bde": false,
-      "gerpe": false,
-      "examSchedule": "Not Applicable",
-      "examDuration": 0,
-      "schedules": {
-        "10001": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E032",
-            "day": "Mon",
-            "time": "17.30 - 18.20",
-            "venue": "TR+4",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "10002": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E033",
-            "day": "Tue",
-            "time": "17.30 - 18.20",
-            "venue": "TR+4",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "10003": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E034",
-            "day": "Wed",
-            "time": "17.30 - 18.20",
-            "venue": "TR+4",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "10004": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E035",
-            "day": "Thu",
-            "time": "17.30 - 18.20",
-            "venue": "TR+4",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "10005": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E036",
-            "day": "Fri",
-            "time": "17.30 - 18.20",
-            "venue": "TR+33",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "10006": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E037",
-            "day": "Mon",
-            "time": "16.30 - 17.20",
-            "venue": "TR+4",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "10007": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E038",
-            "day": "Tue",
-            "time": "16.30 - 17.20",
-            "venue": "TR+4",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "10008": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E039",
-            "day": "Wed",
-            "time": "16.30 - 17.20",
-            "venue": "TR+4",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "10009": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E040",
-            "day": "Thu",
-            "time": "16.30 - 17.20",
-            "venue": "TR+4",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "10010": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E041",
-            "day": "Fri",
-            "time": "14.30 - 15.20",
-            "venue": "TR+31",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "10011": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E042",
-            "day": "Mon",
-            "time": "17.30 - 18.20",
-            "venue": "TR+5",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "10012": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E043",
-            "day": "Tue",
-            "time": "17.30 - 18.20",
-            "venue": "TR+5",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "10013": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E044",
-            "day": "Wed",
-            "time": "17.30 - 18.20",
-            "venue": "TR+5",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "10014": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E045",
-            "day": "Thu",
-            "time": "17.30 - 18.20",
-            "venue": "TR+5",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "10015": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E046",
-            "day": "Fri",
-            "time": "17.30 - 18.20",
-            "venue": "TR+5",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "15011": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E019",
-            "day": "Mon",
-            "time": "15.30 - 16.20",
-            "venue": "TR+17",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "15012": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E020",
-            "day": "Mon",
-            "time": "16.30 - 17.20",
-            "venue": "TR+17",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "15013": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E021",
-            "day": "Tue",
-            "time": "15.30 - 16.20",
-            "venue": "TR+17",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "15014": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E022",
-            "day": "Tue",
-            "time": "16.30 - 17.20",
-            "venue": "TR+17",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "23006": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E008",
-            "day": "Tue",
-            "time": "09.30 - 10.20",
-            "venue": "TR+2",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "23007": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E009",
-            "day": "Tue",
-            "time": "09.30 - 10.20",
-            "venue": "TR+5",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "23008": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E010",
-            "day": "Tue",
-            "time": "10.30 - 11.20",
-            "venue": "TR+2",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "23009": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E011",
-            "day": "Tue",
-            "time": "10.30 - 11.20",
-            "venue": "TR+5",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "23010": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E012",
-            "day": "Tue",
-            "time": "11.30 - 12.20",
-            "venue": "TR+2",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "23011": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E013",
-            "day": "Wed",
-            "time": "08.30 - 09.20",
-            "venue": "TR+5",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "23012": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E014",
-            "day": "Wed",
-            "time": "08.30 - 09.20",
-            "venue": "TR+4",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "23013": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E015",
-            "day": "Wed",
-            "time": "12.30 - 13.20",
-            "venue": "TR+5",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "23014": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E016",
-            "day": "Wed",
-            "time": "12.30 - 13.20",
-            "venue": "TR+37",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "23015": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E017",
-            "day": "Thu",
-            "time": "12.30 - 13.20",
-            "venue": "TR+33",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "23016": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E018",
-            "day": "Thu",
-            "time": "12.30 - 13.20",
-            "venue": "TR+37",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "28611": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E001",
-            "day": "Thu",
-            "time": "10.30 - 11.20",
-            "venue": "TR+36",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "28612": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E002",
-            "day": "Thu",
-            "time": "12.30 - 13.20",
-            "venue": "TR+33",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "28613": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E003",
-            "day": "Thu",
-            "time": "13.30 - 14.20",
-            "venue": "TR+35",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "28614": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E004",
-            "day": "Wed",
-            "time": "10.30 - 11.20",
-            "venue": "TR+34",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "28615": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E005",
-            "day": "Wed",
-            "time": "11.30 - 12.20",
-            "venue": "TR+34",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "28616": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E006",
-            "day": "Tue",
-            "time": "09.30 - 10.20",
-            "venue": "TR+35",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "28617": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E007",
-            "day": "Tue",
-            "time": "10.30 - 11.20",
-            "venue": "TR+34",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "32305": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E047",
-            "day": "Mon",
-            "time": "11.30 - 12.20",
-            "venue": "TR+61",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "32306": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E048",
-            "day": "Mon",
-            "time": "15.30 - 16.20",
-            "venue": "TR+77",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "32307": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E049",
-            "day": "Thu",
-            "time": "12.30 - 13.20",
-            "venue": "TR+88",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "32308": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E050",
-            "day": "Thu",
-            "time": "16.30 - 17.20",
-            "venue": "TR+93",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "55025": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E023",
-            "day": "Tue",
-            "time": "12.30 - 13.20",
-            "venue": "TR+20",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "55026": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E024",
-            "day": "Tue",
-            "time": "13.30 - 14.20",
-            "venue": "TR+20",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "55027": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E025",
-            "day": "Wed",
-            "time": "12.30 - 13.20",
-            "venue": "TR+20",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "55028": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E026",
-            "day": "Wed",
-            "time": "13.30 - 14.20",
-            "venue": "TR+20",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "55029": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E027",
-            "day": "Thu",
-            "time": "13.30 - 14.20",
-            "venue": "TR+20",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "55030": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E028",
-            "day": "Thu",
-            "time": "14.30 - 15.20",
-            "venue": "TR+20",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "55031": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E029",
-            "day": "Thu",
-            "time": "15.30 - 16.20",
-            "venue": "TR+20",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "55032": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E030",
-            "day": "Fri",
-            "time": "10.30 - 11.20",
-            "venue": "TR+20",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "55033": [
-          {
-            "type": "Lec/Studio",
-            "group": "LE",
-            "day": "Thu",
-            "time": "08.30 - 10.20",
-            "venue": "ONLINE",
-            "remark": "Teaching Wk1-7"
-          },
-          {
-            "type": "Tut",
-            "group": "E031",
-            "day": "Fri",
-            "time": "09.30 - 10.20",
-            "venue": "TR+20",
-            "remark": "Teaching Wk2-13"
-          }
-        ]
-      },
-      "id": 20
-    },
-    {
-      "code": "HW0288",
-      "title": "ENGINEERING COMMUNICATION",
-      "school": "SOH",
-      "au": 2,
-      "grading": "Letter-Graded",
-      "prereq": [
-        "Year 3 standing"
-      ],
-      "exclusive": [
-        "HW0210"
-      ],
-      "programmeExclude": "AERO 1, AERO 2, ASEC 1, ASEC 2, BEEC 1, BEEC 2, BIE 1, BIE 2, CBE 1, CBE 2, CBEC 1, CBEC 2, CE 1, CEE 1, CEE 2, CEEC 1, CEEC 2, CSC 1*, CSEC 1, CSEC 2, CVEC 1, CVEC 2, EEE 2, ENE 1, ENE 2, ENEC 1, ENEC 2, IEM 2, MAT 1, MAT 2, ME(DES) 2, ME(NULL) 2, ME(RMS) 2, MEEC(DES) 2, MEEC(NULL) 2, MEEC(RMS) 2, MS(2019-onwards), MTEC 1, MTEC 2",
       "ayExclude": "",
       "bde": false,
       "gerpe": false,
       "examSchedule": "Not Applicable",
       "examDuration": 0,
       "schedules": {
-        "10017": [
+        "1": [
           {
-            "type": "Tut",
-            "group": "SCE1",
+            "type": "Lecture",
+            "group": "LE1",
             "day": "Mon",
-            "time": "16.30 - 18.20",
-            "venue": "TR+7",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "10018": [
-          {
-            "type": "Tut",
-            "group": "SCE2",
-            "day": "Tue",
-            "time": "16.30 - 18.20",
-            "venue": "TR+7",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "10019": [
-          {
-            "type": "Tut",
-            "group": "SCE3",
-            "day": "Wed",
-            "time": "16.30 - 18.20",
-            "venue": "TR+19",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "10020": [
-          {
-            "type": "Tut",
-            "group": "SCE4",
-            "day": "Thu",
-            "time": "16.30 - 18.20",
-            "venue": "TR+7",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "10021": [
-          {
-            "type": "Tut",
-            "group": "SCE5",
-            "day": "Fri",
-            "time": "16.30 - 18.20",
-            "venue": "TR+64",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "10022": [
-          {
-            "type": "Tut",
-            "group": "SCE6",
-            "day": "Mon",
-            "time": "16.30 - 18.20",
-            "venue": "LHN-TR+20",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "10023": [
-          {
-            "type": "Tut",
-            "group": "SCE7",
-            "day": "Tue",
-            "time": "16.30 - 18.20",
-            "venue": "TR+8",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "10024": [
-          {
-            "type": "Tut",
-            "group": "SCE8",
-            "day": "Wed",
-            "time": "16.30 - 18.20",
-            "venue": "TR+8",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "10025": [
-          {
-            "type": "Tut",
-            "group": "SCE9",
-            "day": "Thu",
-            "time": "16.30 - 18.20",
-            "venue": "TR+1",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "10026": [
-          {
-            "type": "Tut",
-            "group": "SCE10",
-            "day": "Fri",
-            "time": "16.30 - 18.20",
-            "venue": "TR+6",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "10027": [
-          {
-            "type": "Tut",
-            "group": "SCE11",
-            "day": "Mon",
-            "time": "14.30 - 16.20",
-            "venue": "LHN-TR+20",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "10028": [
-          {
-            "type": "Tut",
-            "group": "SCE12",
-            "day": "Tue",
-            "time": "14.30 - 16.20",
-            "venue": "LHN-TR+21",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "10029": [
-          {
-            "type": "Tut",
-            "group": "SCE13",
-            "day": "Wed",
-            "time": "14.30 - 16.20",
-            "venue": "TR+19",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "10031": [
-          {
-            "type": "Tut",
-            "group": "SCE15",
-            "day": "Fri",
-            "time": "14.30 - 16.20",
-            "venue": "TR+3",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "10032": [
-          {
-            "type": "Tut",
-            "group": "SCE16",
-            "day": "Mon",
-            "time": "10.30 - 12.20",
-            "venue": "LHN-TR+20",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "10033": [
-          {
-            "type": "Tut",
-            "group": "SCE17",
-            "day": "Tue",
-            "time": "10.30 - 12.20",
-            "venue": "LHN-TR+20",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "10034": [
-          {
-            "type": "Tut",
-            "group": "SCE18",
-            "day": "Wed",
-            "time": "10.30 - 12.20",
-            "venue": "LHN-TR+20",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "10036": [
-          {
-            "type": "Tut",
-            "group": "SCE20",
-            "day": "Fri",
-            "time": "10.30 - 12.20",
-            "venue": "LHN-TR+18",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "10037": [
-          {
-            "type": "Tut",
-            "group": "SCE21",
-            "day": "Mon",
-            "time": "12.30 - 14.20",
-            "venue": "LHN-TR+20",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "10039": [
-          {
-            "type": "Tut",
-            "group": "SCE23",
-            "day": "Wed",
-            "time": "12.30 - 14.20",
-            "venue": "LHN-TR+20",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "10040": [
-          {
-            "type": "Tut",
-            "group": "SCE24",
-            "day": "Thu",
-            "time": "12.30 - 14.20",
-            "venue": "LHN-TR+19",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "10041": [
-          {
-            "type": "Tut",
-            "group": "SCE25",
-            "day": "Fri",
-            "time": "12.30 - 14.20",
-            "venue": "TR+20",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "15201": [
-          {
-            "type": "Tut",
-            "group": "MAT1",
-            "day": "Mon",
-            "time": "11.30 - 13.20",
-            "venue": "TR+20",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "15202": [
-          {
-            "type": "Tut",
-            "group": "MAT2",
-            "day": "Thu",
-            "time": "15.30 - 17.20",
-            "venue": "TR+18",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "15203": [
-          {
-            "type": "Tut",
-            "group": "MAT3",
-            "day": "Fri",
-            "time": "09.30 - 11.20",
-            "venue": "TR+16",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "15204": [
-          {
-            "type": "Tut",
-            "group": "MAT4",
-            "day": "Fri",
-            "time": "15.30 - 17.20",
-            "venue": "TR+16",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "23019": [
-          {
-            "type": "Tut",
-            "group": "MA1",
-            "day": "Mon",
-            "time": "09.30 - 11.20",
-            "venue": "TR+33",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "23020": [
-          {
-            "type": "Tut",
-            "group": "MA2",
-            "day": "Mon",
-            "time": "09.30 - 11.20",
-            "venue": "TR+20",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "23021": [
-          {
-            "type": "Tut",
-            "group": "MA3",
-            "day": "Mon",
-            "time": "16.30 - 18.20",
-            "venue": "LHN-TR+17",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "23022": [
-          {
-            "type": "Tut",
-            "group": "MA4",
-            "day": "Tue",
-            "time": "16.30 - 18.20",
-            "venue": "LHN-TR+21",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "23023": [
-          {
-            "type": "Tut",
-            "group": "MA5",
-            "day": "Wed",
-            "time": "09.30 - 11.20",
-            "venue": "TR+67",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "23024": [
-          {
-            "type": "Tut",
-            "group": "MA6",
-            "day": "Wed",
-            "time": "09.30 - 11.20",
-            "venue": "TR+9",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "23025": [
-          {
-            "type": "Tut",
-            "group": "MA7",
-            "day": "Wed",
-            "time": "16.30 - 18.20",
-            "venue": "LHN-TR+20",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "23026": [
-          {
-            "type": "Tut",
-            "group": "MA8",
-            "day": "Fri",
-            "time": "14.30 - 16.20",
-            "venue": "TR+9",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "23027": [
-          {
-            "type": "Tut",
-            "group": "MA9",
-            "day": "Fri",
-            "time": "16.30 - 18.20",
-            "venue": "TR+2",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "23028": [
-          {
-            "type": "Tut",
-            "group": "MA10",
-            "day": "Fri",
-            "time": "16.30 - 18.20",
-            "venue": "TR+3",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "23029": [
-          {
-            "type": "Tut",
-            "group": "MA11",
-            "day": "Fri",
-            "time": "14.30 - 16.20",
-            "venue": "TR+20",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "23031": [
-          {
-            "type": "Tut",
-            "group": "MA13",
-            "day": "Fri",
-            "time": "14.30 - 16.20",
-            "venue": "TR+6",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "32234": [
-          {
-            "type": "Tut",
-            "group": "EE01",
-            "day": "Mon",
-            "time": "09.30 - 11.20",
-            "venue": "TR+91",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "32236": [
-          {
-            "type": "Tut",
-            "group": "EE03",
-            "day": "Tue",
-            "time": "11.30 - 13.20",
-            "venue": "TR+91",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "32237": [
-          {
-            "type": "Tut",
-            "group": "EE04",
-            "day": "Wed",
-            "time": "11.30 - 13.20",
-            "venue": "TR+67",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "32238": [
-          {
-            "type": "Tut",
-            "group": "EE05",
-            "day": "Wed",
-            "time": "16.30 - 18.20",
-            "venue": "TR+67",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "32239": [
-          {
-            "type": "Tut",
-            "group": "EE06",
-            "day": "Thu",
-            "time": "11.30 - 13.20",
-            "venue": "TR+93",
-            "remark": "Teaching Wk2-13"
-          }
-        ],
-        "32240": [
-          {
-            "type": "Tut",
-            "group": "EE07",
-            "day": "Fri",
-            "time": "14.30 - 16.20",
-            "venue": "TR+64",
-            "remark": "Teaching Wk2-13"
+            "time": "10.30 - 11.30",
+            "venue": "LT NS",
+            "remark": ""
           }
         ]
       },
-      "id": 21
+      "id": 11
+    },
+    {
+      "code": "TC0002",
+      "title": "TEST COURSE 2",
+      "school": "PPIT(GTD)",
+      "au": 2,
+      "grading": "Pass/Fail",
+      "prereq": [
+        "TC0001"
+      ],
+      "exclusive": [
+        ""
+      ],
+      "programmeExclude": "",
+      "ayExclude": "",
+      "bde": false,
+      "gerpe": false,
+      "examSchedule": "Not Applicable",
+      "examDuration": 0,
+      "schedules": {
+        "1": [
+          {
+            "type": "Lecture",
+            "group": "LE1",
+            "day": "Tue",
+            "time": "10.00 - 11.30",
+            "venue": "LT NS",
+            "remark": ""
+          }
+        ]
+      },
+      "id": 12
+    },
+    {
+      "code": "TC0000",
+      "title": "TEST COURSE 0",
+      "school": "PPIT(GTD)",
+      "au": 0,
+      "grading": "Letter-Graded",
+      "prereq": [
+        ""
+      ],
+      "exclusive": [
+        ""
+      ],
+      "programmeExclude": "",
+      "ayExclude": "",
+      "bde": false,
+      "gerpe": false,
+      "examSchedule": "Not Applicable",
+      "examDuration": 0,
+      "schedules": {
+        "1": [
+          {
+            "type": "Lecture",
+            "group": "LE1",
+            "day": "Sun",
+            "time": "10.00 - 11.00",
+            "venue": "LT NS",
+            "remark": ""
+          }
+        ]
+      },
+      "id": 13
+    },
+    {
+      "code": "TC0003",
+      "title": "TEST COURSE 3",
+      "school": "PPIT(GTD)",
+      "au": 3,
+      "grading": "Letter-Graded",
+      "prereq": [
+        ""
+      ],
+      "exclusive": [
+        ""
+      ],
+      "programmeExclude": "",
+      "ayExclude": "",
+      "bde": false,
+      "gerpe": false,
+      "examSchedule": "Not Applicable",
+      "examDuration": 0,
+      "schedules": {
+        "1": [
+          {
+            "type": "Lecture",
+            "group": "LE1",
+            "day": "Wed",
+            "time": "10.30 - 12.00",
+            "venue": "LT NS",
+            "remark": ""
+          }
+        ]
+      },
+      "id": 14
     }
   ]
 }

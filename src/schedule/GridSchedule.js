@@ -31,6 +31,7 @@ const GridSchedule = ({
 
   const addToTable = item => {
     let newTableContent = [...tableContent];
+    console.log({ item });
 
     for(let i = 0; i < item.schedules[indexDrop].length; i++) {
       timeStart = item.schedules[indexDrop][i].time.substring(0, 5);
@@ -133,6 +134,8 @@ const GridSchedule = ({
           mt={tableContent[pos[0]][pos[1]].timeStart.substring(3) === "30" ? 3 : 0}
           height={tableContent[pos[0]][pos[1]].duration}
           group={tableContent[pos[0]][pos[1]].group}
+          tableContent={tableContent}
+          setTableContent={setTableContent}
         />
       }
     </Grid2>
