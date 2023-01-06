@@ -3,6 +3,7 @@ import { AppBar, Box, IconButton, Popover, Toolbar, Typography, useMediaQuery, u
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 
+import Icon from "../home/Icon";
 import SearchCourse from "./SearchCourse";
 
 const AppHeader = ({
@@ -38,7 +39,7 @@ const AppHeader = ({
           {sidebarState ? <Close /> : <Menu />}
         </IconButton>
 
-        <Typography variant="h6" ml={2}>Material STARS</Typography>
+        <Icon />
 
         <Box
           sx={{

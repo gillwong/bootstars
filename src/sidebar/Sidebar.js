@@ -49,7 +49,7 @@ const Sidebar = ({ sidebarState }) => {
           </ListItem>
           <ListItem disablePadding>
             <ListItemButton
-              onClick={() => navigate("/")}
+              onClick={() => navigate("/list")}
               sx={isMd ? { px: 0 } : {}}
             >
               <ListItemIcon

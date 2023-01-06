@@ -9,6 +9,7 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import AddCourse from "./addcourse/AddCourse";
 import AppHeader from "./appheader/AppHeader";
 import CourseList from "./courselist/CourseList";
+import Home from "./home/Home";
 import Schedule from "./schedule/Schedule";
 import { OFF, ON } from "./services/constants";
 import coursesService from "./services/courses";
@@ -75,7 +76,7 @@ function App() {
   const [sidebarState, setSidebarState] = useState(OFF);
   const [rightSidebarState, setRightSidebarState] = useState(OFF);
   const [week, setWeek] = useState(1);
-  const [pageTitle, setPageTitle] = useState("Course List");
+  const [pageTitle, setPageTitle] = useState("Home");
   const [courseFilter, setCourseFilter] = useState("");
 
   const navigate = useNavigate();
@@ -133,31 +134,34 @@ function App() {
 
   return (
     <DndProvider backend={MultiBackend} options={HTML5toTouch}>
+      {pageTitle !== "Home" && <>
+        <AppHeader {...appHeaderProps} setRightSidebarState={setRightSidebarState} />
 
-      <AppHeader {...appHeaderProps} setRightSidebarState={setRightSidebarState} />
+        <Sidebar sidebarState={sidebarState} />
 
-      <Sidebar sidebarState={sidebarState} />
+        {pageTitle !== "Course List" && <RightSidebar {...courseListProps} rightSidebarState={rightSidebarState} setRightSidebarState={setRightSidebarState} />}
 
-      {pageTitle !== "Course List" && <RightSidebar {...courseListProps} rightSidebarState={rightSidebarState} setRightSidebarState={setRightSidebarState} />}
-
-      {!["Add Course", "Edit Course", "View Course"].includes(pageTitle) && <Zoom in={true}><Fab
-        color="secondary"
-        onClick={() => navigate("/add")}
-        sx={{
-          margin: 0,
-          position: "fixed",
-          top: "auto",
-          right: 20,
-          bottom: 20,
-          left: "auto"
-        }}
-      >
-        <Add />
-      </Fab></Zoom>}
-
+        {!["Add Course", "Edit Course", "View Course"].includes(pageTitle) && <Zoom in={true}><Fab
+          color="secondary"
+          onClick={() => navigate("/add")}
+          sx={{
+            margin: 0,
+            position: "fixed",
+            top: "auto",
+            right: 20,
+            bottom: 20,
+            left: "auto"
+          }}
+        >
+          <Add />
+        </Fab></Zoom>}
+      </>}
       <Main sidebarState={sidebarState} rightSidebarState={rightSidebarState} pageTitle={pageTitle} isMd={isMd} isSm={isSm}>
         <Routes>
           <Route path="/" element={
+            <Home onLoadPage={() => setPageTitle("Home")}/>
+          } />
+          <Route path="/list" element={
             <CourseList
               {...courseListProps}
               onLoadPage={() => setPageTitle("Course List")}

@@ -113,7 +113,7 @@ const AddCourse = ({
       break;
     case "ADD":
       handleAdd(newCourse);
-      navigate("/");
+      navigate("/list");
       break;
     default:
       break;
