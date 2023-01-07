@@ -1,5 +1,5 @@
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
-import { AppBar, Box, Card, CardActionArea, CardContent, CardMedia, Chip, Divider, Grow, IconButton, MobileStepper, Slide, Tab, Tabs, Toolbar, Typography } from "@mui/material";
+import { AppBar, Box, Card, CardContent, CardMedia, Chip, Divider, Grow, IconButton, MobileStepper, Slide, Tab, Tabs, Toolbar, Typography, useMediaQuery, useTheme } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
@@ -33,6 +33,9 @@ const steps = [
 ];
 
 const Home = ({ onLoadPage }) => {
+  const theme = useTheme();
+  const isSm = useMediaQuery(theme.breakpoints.up("sm"));
+
   const [activeStep, setActiveStep] = useState(0);
   const [activeTab, setActiveTab] = useState(0);
 
@@ -69,14 +72,16 @@ const Home = ({ onLoadPage }) => {
         <Toolbar>
           <Icon edge="start" />
           <OpenButton variant="outlined" sx={{ ml: 2 }} />
-          <Tabs value={activeTab} sx={{
-            ml: "auto",
-            alignSelf: "stretch",
-            "& .MuiTabs-scroller": { display: "flex" }
-          }}>
-            <Tab label="About" onClick={handleAboutClick} />
-            <Tab label="Features" onClick={handleFeaturesClick} />
-          </Tabs>
+          {isSm && <FeaturesTab>
+            <Tabs value={activeTab} sx={{
+              ml: "auto",
+              alignSelf: "stretch",
+              "& .MuiTabs-scroller": { display: "flex" }
+            }}>
+              <Tab label="About" onClick={handleAboutClick} />
+              <Tab label="Features" onClick={handleFeaturesClick} />
+            </Tabs>
+          </FeaturesTab>}
         </Toolbar>
       </AppBar>
     </ElevationScroll>
@@ -100,12 +105,16 @@ const Home = ({ onLoadPage }) => {
       </Grid2>
       <Grid2 xs={12} md={7} display="flex" alignItems="center" justifyContent="center">
         <Card elevation={8}>
-          <CardActionArea>
+          <Box sx={{ overflow: "auto" }}>
             <CardMedia sx={{ width: "44.8em", height: "30.1em" }} image={steps[activeStep].image} title={steps[activeStep].label} />
-            <CardContent sx={{ py: 1 }}>
-              <Typography variant="h6" align="center">{steps[activeStep].label}</Typography>
-            </CardContent>
-          </CardActionArea>
+          </Box>
+          <CardContent
+            sx={{
+              py: 1,
+              "&:last-child": { pb: 1 }
+            }}>
+            <Typography variant="h6" align="center">{steps[activeStep].label}</Typography>
+          </CardContent>
           <MobileStepper
             variant="dots"
             steps={3}
@@ -123,113 +132,107 @@ const Home = ({ onLoadPage }) => {
       </Grid2>
     </Grid2>
     <Divider><Chip variant="outlined" label="Features"></Chip></Divider>
-    <FeaturesTab setActiveTab={setActiveTab}><>
-      <Grid2 container id="features-anchor" sx={{ minHeight: "85vh", mt: 3, mb: 2 }}>
-        <Grid2 xs={12} md={7} display="flex" alignItems="center" justifyContent="center">
+    <Grid2 container id="features-anchor" sx={{ minHeight: "85vh", mt: 3, mb: 2 }}>
+      <Grid2 xs={12} md={7} display="flex" alignItems="center" justifyContent="center">
+        <TransitionScroll windowPercent={0.1}>
+          <Slide direction="right" in={false} mountOnEnter unmountOnExit>
+            <Card elevation={8} sx={{ overflow: "auto" }}>
+              <CardMedia sx={{ width: "44.8em", height: "30.1em" }} image={featuresAddCourseImg} title="Add Course" />
+            </Card>
+          </Slide>
+        </TransitionScroll>
+      </Grid2>
+      <Grid2 xs={12} md={5} display="flex" alignItems="center">
+        <Box display="block" sx={{ p: 8 }}>
           <TransitionScroll windowPercent={0.1}>
-            <Slide direction="right" in={false} mountOnEnter unmountOnExit>
-              <Card elevation={8}>
-                <CardActionArea>
-                  <CardMedia sx={{ width: "44.8em", height: "30.1em" }} image={featuresAddCourseImg} title="Add Course" />
-                </CardActionArea>
-              </Card>
-            </Slide>
-          </TransitionScroll>
-        </Grid2>
-        <Grid2 xs={12} md={5} display="flex" alignItems="center">
-          <Box display="block" sx={{ p: 8 }}>
-            <TransitionScroll windowPercent={0.1}>
-              <Grow in={false} style={{ transformOrigin: "50% 0 0" }}>
-                <Typography
-                  variant="h4">
+            <Grow in={false} style={{ transformOrigin: "50% 0 0" }}>
+              <Typography
+                variant="h4">
                   Add Courses manually <br />or automatically
-                </Typography>
-              </Grow>
-            </TransitionScroll>
-            <TransitionScroll windowPercent={0.125}>
-              <Grow in={false} style={{ transformOrigin: "50% 0 0" }}>
-                <Typography
-                  variant="body1"
-                  color="text.secondary"
-                  sx={{ mt: 1, mb: 4 }}
-                >
-                  Add courses manually or download the course source file from STARS and parse automatically. Courses can be viewed and modified after creation. Use the search course bar to quickly find courses to view or edit.
-                </Typography>
-              </Grow>
-            </TransitionScroll>
-          </Box>
-        </Grid2>
-      </Grid2><Grid2 container sx={{ minHeight: "85vh", my: 2 }}>
-        <Grid2 xs={12} md={5} display="flex" alignItems="center">
-          <Box display="block" sx={{ p: 8 }}>
-            <TransitionScroll windowPercent={0.35}>
-              <Grow in={false} style={{ transformOrigin: "50% 0 0" }}>
-                <Typography
-                  variant="h4">
-                    Course List
-                </Typography>
-              </Grow>
-            </TransitionScroll>
-            <TransitionScroll windowPercent={0.375}>
-              <Grow in={false} style={{ transformOrigin: "50% 0 0" }}>
-                <Typography
-                  variant="body1"
-                  color="text.secondary"
-                  sx={{ mt: 1, mb: 4 }}
-                >
-                All your courses in one masonry grid layout. View, edit, or delete courses from here. Use the search course bar to filter courses.
-                </Typography>
-              </Grow>
-            </TransitionScroll>
-          </Box>
-        </Grid2>
-        <Grid2 xs={12} md={7} display="flex" alignItems="center" justifyContent="center">
-          <Parallax strength={200}>
-            <Background><img src={masonry1Img} style={{ marginLeft: "-32%", width: "180%" }} /></Background>
-            <Box sx={{ width: "20em", height: "30em" }} />
-          </Parallax>
-          <Parallax strength={-100}>
-            <Background><img src={masonry2Img} style={{ marginLeft: "-32%", width: "180%" }} /></Background>
-            <Box sx={{ width: "20em", height: "30em" }} />
-          </Parallax>
-        </Grid2>
-      </Grid2><Grid2 container sx={{ minHeight: "85vh", my: 2 }}>
-        <Grid2 xs={12} md={7} display="flex" alignItems="center" justifyContent="center">
-          <TransitionScroll windowPercent={0.6}>
-            <Slide direction="right" in={false} mountOnEnter unmountOnExit>
-              <Card elevation={8}>
-                <CardActionArea>
-                  <CardMedia sx={{ width: "44.8em", height: "30.1em" }} image={scheduleImg} title="Schedule" />
-                </CardActionArea>
-              </Card>
-            </Slide>
+              </Typography>
+            </Grow>
           </TransitionScroll>
-        </Grid2>
-        <Grid2 xs={12} md={5} display="flex" alignItems="center">
-          <Box display="block" sx={{ p: 8 }}>
-            <TransitionScroll windowPercent={0.575}>
-              <Grow in={false} style={{ transformOrigin: "50% 0 0" }}>
-                <Typography
-                  variant="h4">
+          <TransitionScroll windowPercent={0.125}>
+            <Grow in={false} style={{ transformOrigin: "50% 0 0" }}>
+              <Typography
+                variant="body1"
+                color="text.secondary"
+                sx={{ mt: 1, mb: 4 }}
+              >
+                  Add courses manually or download the course source file from STARS and parse automatically. Courses can be viewed and modified after creation. Use the search course bar to quickly find courses to view or edit.
+              </Typography>
+            </Grow>
+          </TransitionScroll>
+        </Box>
+      </Grid2>
+    </Grid2><Grid2 container sx={{ minHeight: "85vh", my: 2 }}>
+      <Grid2 xs={12} md={5} display="flex" alignItems="center">
+        <Box display="block" sx={{ p: 8 }}>
+          <TransitionScroll windowPercent={0.35}>
+            <Grow in={false} style={{ transformOrigin: "50% 0 0" }}>
+              <Typography
+                variant="h4">
+                    Course List
+              </Typography>
+            </Grow>
+          </TransitionScroll>
+          <TransitionScroll windowPercent={0.375}>
+            <Grow in={false} style={{ transformOrigin: "50% 0 0" }}>
+              <Typography
+                variant="body1"
+                color="text.secondary"
+                sx={{ mt: 1, mb: 4 }}
+              >
+                All your courses in one masonry grid layout. View, edit, or delete courses from here. Use the search course bar to filter courses.
+              </Typography>
+            </Grow>
+          </TransitionScroll>
+        </Box>
+      </Grid2>
+      <Grid2 xs={12} md={7} display="flex" alignItems="center" justifyContent="center">
+        <Parallax strength={200}>
+          <Background><img src={masonry1Img} style={{ marginLeft: "-32%", width: "180%" }} /></Background>
+          <Box sx={{ width: "20em", height: "30em" }} />
+        </Parallax>
+        <Parallax strength={-100}>
+          <Background><img src={masonry2Img} style={{ marginLeft: "-32%", width: "180%" }} /></Background>
+          <Box sx={{ width: "20em", height: "30em" }} />
+        </Parallax>
+      </Grid2>
+    </Grid2><Grid2 container sx={{ minHeight: "85vh", my: 2 }}>
+      <Grid2 xs={12} md={7} display="flex" alignItems="center" justifyContent="center">
+        <TransitionScroll windowPercent={0.6}>
+          <Slide direction="right" in={false} mountOnEnter unmountOnExit>
+            <Card elevation={8} sx={{ overflow: "auto" }}>
+              <CardMedia sx={{ width: "44.8em", height: "30.1em" }} image={scheduleImg} title="Schedule" />
+            </Card>
+          </Slide>
+        </TransitionScroll>
+      </Grid2>
+      <Grid2 xs={12} md={5} display="flex" alignItems="center">
+        <Box display="block" sx={{ p: 8 }}>
+          <TransitionScroll windowPercent={0.575}>
+            <Grow in={false} style={{ transformOrigin: "50% 0 0" }}>
+              <Typography
+                variant="h4">
                 Plan Your Schedule
-                </Typography>
-              </Grow>
-            </TransitionScroll>
-            <TransitionScroll windowPercent={0.6}>
-              <Grow in={false} style={{ transformOrigin: "50% 0 0" }}>
-                <Typography
-                  variant="body1"
-                  color="text.secondary"
-                  sx={{ mt: 1, mb: 4 }}
-                >
+              </Typography>
+            </Grow>
+          </TransitionScroll>
+          <TransitionScroll windowPercent={0.6}>
+            <Grow in={false} style={{ transformOrigin: "50% 0 0" }}>
+              <Typography
+                variant="body1"
+                color="text.secondary"
+                sx={{ mt: 1, mb: 4 }}
+              >
                 Plan your schedules by dragging and dropping courses to available slots (buggy). Use the search course bar to quickly find courses. Hover over the mini course cards on the calendar to view details or remove them from the schedule.
-                </Typography>
-              </Grow>
-            </TransitionScroll>
-          </Box>
-        </Grid2>
-      </Grid2></>
-    </FeaturesTab></>
+              </Typography>
+            </Grow>
+          </TransitionScroll>
+        </Box>
+      </Grid2>
+    </Grid2></>
   );
 };
 

@@ -6,7 +6,7 @@ import duration from "dayjs/plugin/duration";
 import timezone from "dayjs/plugin/timezone";
 import utc from "dayjs/plugin/utc";
 import PropTypes from "prop-types";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { useDrop } from "react-dnd";
 
 import CourseCardMini from "../courselist/CourseCardMini";
@@ -27,28 +27,28 @@ const GridSchedule = ({
   const day = DAYS[pos[1] - 1];
   let timeStart = `${6 + pos[0] < 10 ? "0" : ""}${6 + pos[0]}.00`;
   let timeEnd;
-  const [indexDrop, setIndexDrop] = useState();
+  const indexDrop = useRef(undefined);
 
   const addToTable = item => {
     let newTableContent = [...tableContent];
-    console.log({ item });
+    // console.log({ indexDrop: indexDrop.current, schedules: item.schedules });
 
-    for(let i = 0; i < item.schedules[indexDrop].length; i++) {
-      timeStart = item.schedules[indexDrop][i].time.substring(0, 5);
-      timeEnd = item.schedules[indexDrop][i].time.substring(8);
+    for(let i = 0; i < item.schedules[indexDrop.current].length; i++) {
+      timeStart = item.schedules[indexDrop.current][i].time.substring(0, 5);
+      timeEnd = item.schedules[indexDrop.current][i].time.substring(8);
 
       let startTime = dayjs(timeStart, "HH.mm");
       let endTime = dayjs(timeEnd, "HH.mm");
       let duration = endTime.diff(startTime, "h", true);
 
-      newTableContent[parseInt(timeStart.substring(0, 2)) - 7][DAYS.findIndex(element => element === item.schedules[indexDrop][i].day) + 1] = {
+      newTableContent[parseInt(timeStart.substring(0, 2)) - 7][DAYS.findIndex(element => element === item.schedules[indexDrop.current][i].day) + 1] = {
         course: item,
-        indexDrop,
+        indexDrop: indexDrop.current,
         timeStart,
         timeEnd,
         timing: `${timeStart} - ${timeEnd}`,
         duration,
-        group: item.schedules[indexDrop][i]
+        group: item.schedules[indexDrop.current][i]
       };
     }
     setTableContent(newTableContent);
@@ -63,7 +63,7 @@ const GridSchedule = ({
           if(timeStart.substring(0, 2) === item.schedules[indexes[i]][j].time.substring(0, 2) && day === item.schedules[indexes[i]][j].day) {
             timeStart = item.schedules[indexes[i]][j].time.substring(0, 5);
             timeEnd = item.schedules[indexes[i]][j].time.substring(8);
-            setIndexDrop(indexes[i]);
+            indexDrop.current = indexes[i];
             // console.log({ timeStart, timeEnd, indexDrop });
             return true;
           }
