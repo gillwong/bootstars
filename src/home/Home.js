@@ -82,7 +82,7 @@ const Home = ({ onLoadPage }) => {
     </ElevationScroll>
     <Toolbar id="back-to-top-anchor" />
     <Grid2 container id="about-anchor" sx={{ minHeight: "85vh", mb: 3 }}>
-      <Grid2 xs={5} display="flex" alignItems="center">
+      <Grid2 xs={12} md={5} display="flex" alignItems="center">
         <Box display="block" sx={{ p: 8 }}>
           <Typography
             variant="h3">
@@ -98,7 +98,7 @@ const Home = ({ onLoadPage }) => {
           <OpenButton size="large" variant="contained" />
         </Box>
       </Grid2>
-      <Grid2 xs={7} display="flex" alignItems="center" justifyContent="center">
+      <Grid2 xs={12} md={7} display="flex" alignItems="center" justifyContent="center">
         <Card elevation={8}>
           <CardActionArea>
             <CardMedia sx={{ width: "44.8em", height: "30.1em" }} image={steps[activeStep].image} title={steps[activeStep].label} />
@@ -125,7 +125,7 @@ const Home = ({ onLoadPage }) => {
     <Divider><Chip variant="outlined" label="Features"></Chip></Divider>
     <FeaturesTab setActiveTab={setActiveTab}><>
       <Grid2 container id="features-anchor" sx={{ minHeight: "85vh", mt: 3, mb: 2 }}>
-        <Grid2 xs={7} display="flex" alignItems="center" justifyContent="center">
+        <Grid2 xs={12} md={7} display="flex" alignItems="center" justifyContent="center">
           <TransitionScroll windowPercent={0.1}>
             <Slide direction="right" in={false} mountOnEnter unmountOnExit>
               <Card elevation={8}>
@@ -136,7 +136,7 @@ const Home = ({ onLoadPage }) => {
             </Slide>
           </TransitionScroll>
         </Grid2>
-        <Grid2 xs={5} display="flex" alignItems="center">
+        <Grid2 xs={12} md={5} display="flex" alignItems="center">
           <Box display="block" sx={{ p: 8 }}>
             <TransitionScroll windowPercent={0.1}>
               <Grow in={false} style={{ transformOrigin: "50% 0 0" }}>
@@ -160,7 +160,7 @@ const Home = ({ onLoadPage }) => {
           </Box>
         </Grid2>
       </Grid2><Grid2 container sx={{ minHeight: "85vh", my: 2 }}>
-        <Grid2 xs={5} display="flex" alignItems="center">
+        <Grid2 xs={12} md={5} display="flex" alignItems="center">
           <Box display="block" sx={{ p: 8 }}>
             <TransitionScroll windowPercent={0.35}>
               <Grow in={false} style={{ transformOrigin: "50% 0 0" }}>
@@ -183,7 +183,7 @@ const Home = ({ onLoadPage }) => {
             </TransitionScroll>
           </Box>
         </Grid2>
-        <Grid2 xs={7} display="flex" alignItems="center" justifyContent="center">
+        <Grid2 xs={12} md={7} display="flex" alignItems="center" justifyContent="center">
           <Parallax strength={200}>
             <Background><img src={masonry1Img} style={{ marginLeft: "-32%", width: "180%" }} /></Background>
             <Box sx={{ width: "20em", height: "30em" }} />
@@ -194,7 +194,7 @@ const Home = ({ onLoadPage }) => {
           </Parallax>
         </Grid2>
       </Grid2><Grid2 container sx={{ minHeight: "85vh", my: 2 }}>
-        <Grid2 xs={7} display="flex" alignItems="center" justifyContent="center">
+        <Grid2 xs={12} md={7} display="flex" alignItems="center" justifyContent="center">
           <TransitionScroll windowPercent={0.6}>
             <Slide direction="right" in={false} mountOnEnter unmountOnExit>
               <Card elevation={8}>
@@ -205,7 +205,7 @@ const Home = ({ onLoadPage }) => {
             </Slide>
           </TransitionScroll>
         </Grid2>
-        <Grid2 xs={5} display="flex" alignItems="center">
+        <Grid2 xs={12} md={5} display="flex" alignItems="center">
           <Box display="block" sx={{ p: 8 }}>
             <TransitionScroll windowPercent={0.575}>
               <Grow in={false} style={{ transformOrigin: "50% 0 0" }}>

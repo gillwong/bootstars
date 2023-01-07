@@ -25,7 +25,7 @@ const Sidebar = ({ sidebarState }) => {
         },
       }}
     >
-      <Toolbar />
+      <Toolbar sx={{ mb: 2 }} />
       <Box sx={{ overflow: "auto" }}>
         <List>
           <ListItem

@@ -33,7 +33,7 @@ const RightSidebar = ({
         }
       }}
     >
-      <Toolbar />
+      <Toolbar sx={{ mb: 2 }} />
       <Button
         variant="contained"
         color="warning"
