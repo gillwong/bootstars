@@ -1,9 +1,8 @@
 import { Add } from "@mui/icons-material";
 import { Fab, styled, useMediaQuery, useTheme, Zoom } from "@mui/material";
-import { MultiBackend } from "dnd-multi-backend";
-import { HTML5toTouch } from "rdndmb-html5-to-touch";
 import React, { useEffect, useState } from "react";
 import { DndProvider } from "react-dnd";
+import { TouchBackend } from "react-dnd-touch-backend";
 import { Route, Routes, useNavigate } from "react-router-dom";
 
 import AddCourse from "./addcourse/AddCourse";
@@ -50,6 +49,11 @@ const Main = styled("main", {
 }));
 
 function App() {
+  const theme = useTheme();
+  const isMd = useMediaQuery(theme.breakpoints.down("md"));
+  const isSm = useMediaQuery(theme.breakpoints.down("sm"));
+
+  const [scheduleContentTemp, setScheduleContentTemp] = useState([]);
   const [scheduleContent, setScheduleContent] = useState([
     ["Time", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
     ["08.00", "", "", "", "", "", "", ""],
@@ -68,9 +72,6 @@ function App() {
     ["21.00", "", "", "", "", "", "", ""],
     ["22.00", "", "", "", "", "", "", ""],
   ]);
-  const theme = useTheme();
-  const isMd = useMediaQuery(theme.breakpoints.down("md"));
-  const isSm = useMediaQuery(theme.breakpoints.down("sm"));
 
   const [courses, setCourses] = useState([]);
   const [sidebarState, setSidebarState] = useState(OFF);
@@ -133,7 +134,9 @@ function App() {
   };
 
   return (
-    <DndProvider backend={MultiBackend} options={HTML5toTouch}>
+    <DndProvider backend={TouchBackend} options={{
+      enableMouseEvents: true,
+    }}>
       {pageTitle !== "Home" && <>
         <AppHeader {...appHeaderProps} setRightSidebarState={setRightSidebarState} />
 
@@ -177,7 +180,9 @@ function App() {
           <Route path="/schedule" element={
             <Schedule
               tableContent={scheduleContent}
+              prevTableContent={scheduleContentTemp}
               setTableContent={setScheduleContent}
+              setPrevTableContent={setScheduleContentTemp}
               onLoadPage={() => setPageTitle("Schedule")} />
           } />
           <Route path="/edit/:id" element={

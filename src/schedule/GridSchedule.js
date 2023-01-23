@@ -24,34 +24,34 @@ const GridSchedule = ({
   tableContent,
   setTableContent
 }) => {
-  const day = DAYS[pos[1] - 1];
-  let timeStart = `${6 + pos[0] < 10 ? "0" : ""}${6 + pos[0]}.00`;
-  let timeEnd;
-  const indexDrop = useRef(undefined);
+  const gridDay = DAYS[pos[1] - 1];
+  const gridTimeStart = `${6 + pos[0] < 10 ? "0" : ""}${6 + pos[0]}.00`;
+  let classTimeStart, classTimeEnd;
+  const classIndex = useRef(undefined);
 
-  const addToTable = item => {
-    let newTableContent = [...tableContent];
-    // console.log({ indexDrop: indexDrop.current, schedules: item.schedules });
+  const addToTable = course => {
+    let newTableContent = structuredClone(tableContent);
 
-    for(let i = 0; i < item.schedules[indexDrop.current].length; i++) {
-      timeStart = item.schedules[indexDrop.current][i].time.substring(0, 5);
-      timeEnd = item.schedules[indexDrop.current][i].time.substring(8);
+    for(let i = 0; i < course.schedules[classIndex.current].length; i++) {
+      classTimeStart = course.schedules[classIndex.current][i].time.substring(0, 5);
+      classTimeEnd = course.schedules[classIndex.current][i].time.substring(8);
 
-      let startTime = dayjs(timeStart, "HH.mm");
-      let endTime = dayjs(timeEnd, "HH.mm");
-      let duration = endTime.diff(startTime, "h", true);
+      let classTimeStartObj = dayjs(classTimeStart, "HH.mm");
+      let classTimeEndObj = dayjs(classTimeEnd, "HH.mm");
+      let duration = classTimeEndObj.diff(classTimeStartObj, "h", true);
 
-      newTableContent[parseInt(timeStart.substring(0, 2)) - 7][DAYS.findIndex(element => element === item.schedules[indexDrop.current][i].day) + 1] = {
-        course: item,
-        indexDrop: indexDrop.current,
-        timeStart,
-        timeEnd,
-        timing: `${timeStart} - ${timeEnd}`,
+      newTableContent[parseInt(classTimeStart.substring(0, 2)) - 7][DAYS.findIndex(el => el === course.schedules[classIndex.current][i].day) + 1] = {
+        course,
+        index: classIndex.current,
+        classTimeStart,
+        classTimeEnd,
+        timing: `${classTimeStart} - ${classTimeEnd}`,
         duration,
-        group: item.schedules[indexDrop.current][i]
+        group: course.schedules[classIndex.current][i]
       };
     }
     setTableContent(newTableContent);
+    // console.log({ course, tableContent, newTableContent });
   };
 
   const [{ isOver, canDrop, itemObj }, drop] = useDrop(() => ({
@@ -60,43 +60,47 @@ const GridSchedule = ({
       const indexes = Object.keys(item.schedules);
       for(let i = 0; i < indexes.length; i++) {
         for(let j = 0; j < item.schedules[indexes[i]].length; j++) {
-          if(timeStart.substring(0, 2) === item.schedules[indexes[i]][j].time.substring(0, 2) && day === item.schedules[indexes[i]][j].day) {
-            timeStart = item.schedules[indexes[i]][j].time.substring(0, 5);
-            timeEnd = item.schedules[indexes[i]][j].time.substring(8);
-            indexDrop.current = indexes[i];
-            // console.log({ timeStart, timeEnd, indexDrop });
+          if(
+            gridTimeStart.substring(0, 2) === item.schedules[indexes[i]][j].time.substring(0, 2)
+            && gridDay === item.schedules[indexes[i]][j].day
+          ) {
+            classTimeStart = item.schedules[indexes[i]][j].time.substring(0, 5);
+            classTimeEnd = item.schedules[indexes[i]][j].time.substring(8);
+            classIndex.current = indexes[i];
             return true;
           }
         }
       }
       return false;
     },
+    // eslint-disable-next-line no-unused-vars
     drop: item => {
-      addToTable(item);
+      // addToTable(item);  // breaks tableContent
     },
     collect: monitor => ({
       isOver: !!monitor.isOver(),
       canDrop: !!monitor.canDrop(),
       itemObj: monitor.getItem()
+      // { // itemObj members
+      //   code: course.code,
+      //   title: course.title,
+      //   schedules: course.schedules
+      // }
     })
   }));
 
-  const prevValues = useRef({ isOver, canDrop, indexDrop });
-
   useEffect(() => {
     const hoverEffect = () => {
-      if(prevValues.isOver !== isOver
-        && prevValues.canDrop !== canDrop
-        && prevValues.indexDrop !== indexDrop) {
-        // console.log({ isOver, prevTableContent, tableContent });
-        if(isOver && canDrop && indexDrop) {
-          const newPrevTableContent = structuredClone(tableContent);
-          setPrevTableContent(newPrevTableContent);
-          addToTable(itemObj);
-        } else if(!isOver && canDrop && indexDrop) {
-          const newTableContent = structuredClone(prevTableContent);
-          setTableContent(newTableContent);
-        }
+      // console.log({ prevTableContent, tableContent });
+      if(isOver && canDrop && classIndex) {
+        const newPrevTableContent = structuredClone(tableContent);
+        setPrevTableContent(newPrevTableContent);
+        // console.log("hover", { newPrevTableContent });
+        addToTable(itemObj);
+      } else if(!isOver && canDrop && classIndex) {
+        const newTableContent = structuredClone(prevTableContent);
+        setTableContent(newTableContent);
+        // console.log("leave", { newTableContentHover: newTableContent });
       }
     };
     hoverEffect();
@@ -129,13 +133,14 @@ const GridSchedule = ({
       {tableContent[pos[0]][pos[1]] &&
         <CourseCardMini
           course={tableContent[pos[0]][pos[1]].course}
-          index={tableContent[pos[0]][pos[1]].indexDrop}
+          index={tableContent[pos[0]][pos[1]].index}
           timing={tableContent[pos[0]][pos[1]].timing}
-          mt={tableContent[pos[0]][pos[1]].timeStart.substring(3) === "30" ? 3 : 0}
+          mt={tableContent[pos[0]][pos[1]].classTimeStart.substring(3) === "30" ? 3 : 0}
           height={tableContent[pos[0]][pos[1]].duration}
           group={tableContent[pos[0]][pos[1]].group}
           tableContent={tableContent}
           setTableContent={setTableContent}
+          setPrevTableContent={setPrevTableContent}
         />
       }
     </Grid2>

@@ -1,4 +1,4 @@
-import { DeleteOutline, InfoOutlined, ModeEditOutlineOutlined } from "@mui/icons-material";
+import { DeleteOutline, DragHandle, InfoOutlined, ModeEditOutlineOutlined } from "@mui/icons-material";
 import { Card, CardActions, CardContent, IconButton, Typography } from "@mui/material";
 import { blueGrey } from "@mui/material/colors";
 import PropTypes from "prop-types";
@@ -9,9 +9,13 @@ import { Link } from "react-router-dom";
 import { ItemTypes } from "../services/constants";
 
 const CourseCard = ({ course, handleDelete }) => {
-  const [{ isDragging }, drag] = useDrag(() => ({
+  const [{ isDragging }, dragSource, dragPreview] = useDrag(() => ({
     type: ItemTypes.COURSE,
-    item: () => ({ ...course }),
+    item: () => ({
+      code: course.code,
+      title: course.title,
+      schedules: course.schedules
+    }),
     collect: monitor => ({
       isDragging: !!monitor.isDragging()
     })
@@ -19,7 +23,7 @@ const CourseCard = ({ course, handleDelete }) => {
 
   return (
     <Card
-      ref={drag}
+      ref={dragPreview}
       sx={{
         margin: 1,
         backgroundColor: blueGrey[50],
@@ -28,10 +32,17 @@ const CourseCard = ({ course, handleDelete }) => {
     >
       <CardContent>
         <Typography
+          ref={dragSource}
           color="text.secondary"
-          sx={{ fontWeight: "light" }}
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            flexWrap: "wrap",
+            fontWeight: "light"
+          }}
           gutterBottom
         >
+          <DragHandle sx={{ ml: -0.5, mr: 1 }} />
           {course.grading}
         </Typography>
         <Typography

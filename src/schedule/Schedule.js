@@ -1,21 +1,31 @@
 import { Box, Toolbar, Typography, useMediaQuery, useTheme } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import PropTypes from "prop-types";
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect } from "react";
 
 import GridSchedule from "./GridSchedule";
 
-const Schedule = ({ onLoadPage, tableContent, setTableContent }) => {
+const Schedule = ({
+  onLoadPage,
+  prevTableContent,
+  tableContent,
+  setPrevTableContent,
+  setTableContent
+}) => {
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up("md"));
 
-  const [prevTableContent, setPrevTableContent] = useState([]);
-
   useEffect(onLoadPage, [onLoadPage]);
+
+  // debug
+  // useEffect(() => {
+  //   console.log("render Schedule component");
+  //   console.log({ prevTableContent, tableContent });
+  // });
 
   return (
     <Box sx={{ flexGrow: 1, py: 1 }}>
-      <Toolbar />
+      <Toolbar sx={{ mb: 2 }} />
       <Grid2
         container
         spacing={2}
@@ -76,7 +86,9 @@ const Schedule = ({ onLoadPage, tableContent, setTableContent }) => {
 Schedule.propTypes = {
   onLoadPage: PropTypes.func.isRequired,
   tableContent: PropTypes.array.isRequired,
-  setTableContent: PropTypes.func.isRequired
+  prevTableContent: PropTypes.array.isRequired,
+  setTableContent: PropTypes.func.isRequired,
+  setPrevTableContent: PropTypes.func.isRequired
 };
 
 export default Schedule;

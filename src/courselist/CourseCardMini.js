@@ -1,5 +1,5 @@
 import { RemoveCircle } from "@mui/icons-material";
-import { Box, Button, Card, CardContent, Typography } from "@mui/material";
+import { Box, Button, Card, CardContent, Typography, useMediaQuery, useTheme } from "@mui/material";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 
@@ -11,8 +11,11 @@ const CourseCardMini = ({
   height,
   group,
   tableContent,
-  setTableContent
+  setTableContent,
 }) => {
+  const theme = useTheme();
+  const isLg = useMediaQuery(theme.breakpoints.up("lg"));
+
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -75,24 +78,26 @@ const CourseCardMini = ({
           <Button
             variant="contained"
             color="primary"
-            startIcon={<RemoveCircle />}
+            startIcon={isLg && <RemoveCircle />}
             size="small"
             display="flex"
             sx={{ mt: 1, flexGrow: 1 }}
-            onClick={() => setTableContent(
-              [...tableContent]
+            onClick={() => {
+              const deepCloneTableContent = structuredClone(tableContent);
+              const newTableContent = [...deepCloneTableContent]
                 .map(row => row
                   .map(val => {
                     if(val instanceof(Object)
-                      && val.course === course
-                      && val.indexDrop === index) {
+                      && val.course.code === course.code
+                      && val.index === index) {
                       return "";
                     }
                     return val;
                   })
-                )
-            )}
-          >Remove</Button>
+                );
+              setTableContent(newTableContent);
+            }}
+          >{isLg ? "Remove" : <RemoveCircle />}</Button>
         </Box>
       </CardContent>
 
@@ -108,7 +113,8 @@ CourseCardMini.propTypes = {
   height: PropTypes.number,
   group: PropTypes.object,
   tableContent: PropTypes.array,
-  setTableContent: PropTypes.func
+  setTableContent: PropTypes.func,
+  setPrevTableContent: PropTypes.func,
 };
 
 export default CourseCardMini;
