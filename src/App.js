@@ -1,6 +1,7 @@
 import { Add } from "@mui/icons-material";
 import { Fab, styled, useMediaQuery, useTheme, Zoom } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import { useRef } from "react";
 import { DndProvider } from "react-dnd";
 import { TouchBackend } from "react-dnd-touch-backend";
 import { Route, Routes, useNavigate } from "react-router-dom";
@@ -53,6 +54,9 @@ function App() {
   const isMd = useMediaQuery(theme.breakpoints.down("md"));
   const isSm = useMediaQuery(theme.breakpoints.down("sm"));
 
+  const appHeaderRef = useRef();
+  const [toolbarHeight, setToolbarHeight] = useState(0);
+
   const [scheduleContentTemp, setScheduleContentTemp] = useState([]);
   const [scheduleContent, setScheduleContent] = useState([
     ["Time", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
@@ -86,7 +90,14 @@ function App() {
     coursesService.getAll()
       .then(returnedCourses => setCourses(returnedCourses))
       .catch(err => console.error(err));
+    getAppHeaderHeight();
+    window.addEventListener("resize", getAppHeaderHeight);
   }, []);
+
+  const getAppHeaderHeight = () => {
+    const height = Number(appHeaderRef.current?.clientHeight);
+    setToolbarHeight(height);
+  };
 
   const addCourse = (newCourse) => {
     // Convert Map to Object
@@ -138,11 +149,11 @@ function App() {
       enableMouseEvents: true,
     }}>
       {pageTitle !== "Home" && <>
-        <AppHeader {...appHeaderProps} setRightSidebarState={setRightSidebarState} />
+        <AppHeader ref={appHeaderRef} {...appHeaderProps} setRightSidebarState={setRightSidebarState} />
 
-        <Sidebar sidebarState={sidebarState} />
+        <Sidebar sidebarState={sidebarState} toolbarHeight={toolbarHeight} />
 
-        {pageTitle !== "Course List" && <RightSidebar {...courseListProps} rightSidebarState={rightSidebarState} setRightSidebarState={setRightSidebarState} />}
+        {pageTitle !== "Course List" && <RightSidebar {...courseListProps} rightSidebarState={rightSidebarState} toolbarHeight={toolbarHeight} setRightSidebarState={setRightSidebarState} />}
 
         {!["Add Course", "Edit Course", "View Course"].includes(pageTitle) && <Zoom in={true}><Fab
           color="secondary"
@@ -167,12 +178,14 @@ function App() {
           <Route path="/list" element={
             <CourseList
               {...courseListProps}
+              toolbarHeight={toolbarHeight}
               onLoadPage={() => setPageTitle("Course List")}
             />
           } />
           <Route path="/add" element={
             <AddCourse
               mode="ADD"
+              toolbarHeight={toolbarHeight}
               handleAdd={addCourse}
               onLoadPage={() => setPageTitle("Add Course")}
             />
@@ -181,6 +194,7 @@ function App() {
             <Schedule
               tableContent={scheduleContent}
               prevTableContent={scheduleContentTemp}
+              toolbarHeight={toolbarHeight}
               setTableContent={setScheduleContent}
               setPrevTableContent={setScheduleContentTemp}
               onLoadPage={() => setPageTitle("Schedule")} />
@@ -188,6 +202,7 @@ function App() {
           <Route path="/edit/:id" element={
             <AddCourse
               mode="EDIT"
+              toolbarHeight={toolbarHeight}
               handleAdd={addCourse}
               handleEdit={editCourse}
               onLoadPage={() => setPageTitle("Edit Course")}
@@ -196,6 +211,7 @@ function App() {
           <Route path="/view/:id" element={
             <AddCourse
               mode="VIEW"
+              toolbarHeight={toolbarHeight}
               onLoadPage={() => setPageTitle("View Course")}
             />
           } />

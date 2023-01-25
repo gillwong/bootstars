@@ -4,7 +4,10 @@ import PropTypes from "prop-types";
 import React from "react";
 import { useNavigate } from "react-router";
 
-const Sidebar = ({ sidebarState }) => {
+const Sidebar = ({
+  sidebarState,
+  toolbarHeight
+}) => {
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -25,7 +28,7 @@ const Sidebar = ({ sidebarState }) => {
         },
       }}
     >
-      <Toolbar sx={{ mb: 2 }} />
+      <Toolbar sx={toolbarHeight ? { height: `${toolbarHeight}px` } : {}} />
       <Box sx={{ overflow: "auto" }}>
         <List>
           <ListItem
@@ -88,6 +91,9 @@ const Sidebar = ({ sidebarState }) => {
   );
 };
 
-Sidebar.propTypes = { sidebarState: PropTypes.bool };
+Sidebar.propTypes = {
+  sidebarState: PropTypes.bool,
+  toolbarHeight: PropTypes.number.isRequired
+};
 
 export default Sidebar;

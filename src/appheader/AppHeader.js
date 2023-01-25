@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import Icon from "../home/Icon";
 import SearchCourse from "./SearchCourse";
 
-const AppHeader = ({
+const AppHeader = React.forwardRef(({
   week,
   pageTitle,
   courseFilter,
@@ -15,7 +15,7 @@ const AppHeader = ({
   handleWeek,
   setCourseFilter,
   setRightSidebarState,
-}) => {
+}, ref) => {
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -28,7 +28,7 @@ const AppHeader = ({
   };
 
   return (
-    <AppBar sx={{ zIndex: theme => theme.zIndex.drawer + 1 }}>
+    <AppBar ref={ref} sx={{ zIndex: theme => theme.zIndex.drawer + 1 }}>
       <Toolbar>
         <IconButton
           size="large"
@@ -104,7 +104,9 @@ const AppHeader = ({
       </Toolbar>
     </AppBar>
   );
-};
+});
+
+AppHeader.displayName = "AppHeader";
 
 AppHeader.propTypes = {
   week: PropTypes.number,

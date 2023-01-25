@@ -27,6 +27,7 @@ dayjs.extend(duration);
 
 const AddCourse = ({
   mode,
+  toolbarHeight,
   handleAdd,
   handleEdit,
   onLoadPage
@@ -221,7 +222,7 @@ const AddCourse = ({
 
   return (
     <Container className="py-4">
-      <Toolbar />
+      <Toolbar sx={toolbarHeight ? { height: `${toolbarHeight}px` } : {}} />
       <h2>{mode === "EDIT" ? "Edit" : mode === "VIEW" ? "View" : "Add"} Course</h2>
       <hr />
       <Form onSubmit={handleSubmit}>
@@ -587,6 +588,7 @@ const AddCourse = ({
 
 AddCourse.propTypes = {
   mode: PropTypes.string,
+  toolbarHeight: PropTypes.number.isRequired,
   handleAdd: PropTypes.func,
   handleEdit: PropTypes.func,
   onLoadPage: PropTypes.func

@@ -8,6 +8,7 @@ import GridSchedule from "./GridSchedule";
 const Schedule = ({
   onLoadPage,
   prevTableContent,
+  toolbarHeight,
   tableContent,
   setPrevTableContent,
   setTableContent
@@ -25,7 +26,7 @@ const Schedule = ({
 
   return (
     <Box sx={{ flexGrow: 1, py: 1 }}>
-      <Toolbar sx={{ mb: 2 }} />
+      <Toolbar sx={toolbarHeight ? { height: `${toolbarHeight}px` } : {}} />
       <Grid2
         container
         spacing={2}
@@ -87,6 +88,7 @@ Schedule.propTypes = {
   onLoadPage: PropTypes.func.isRequired,
   tableContent: PropTypes.array.isRequired,
   prevTableContent: PropTypes.array.isRequired,
+  toolbarHeight: PropTypes.number.isRequired,
   setTableContent: PropTypes.func.isRequired,
   setPrevTableContent: PropTypes.func.isRequired
 };

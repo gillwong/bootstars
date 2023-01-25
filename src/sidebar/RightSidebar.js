@@ -7,6 +7,7 @@ import { OFF } from "../services/constants";
 
 const RightSidebar = ({
   rightSidebarState,
+  toolbarHeight,
   courses,
   courseFilter,
   handleDelete,
@@ -33,7 +34,7 @@ const RightSidebar = ({
         }
       }}
     >
-      <Toolbar sx={{ mb: 2 }} />
+      <Toolbar sx={toolbarHeight ? { height: `${toolbarHeight}px` } : {}} />
       <Button
         variant="contained"
         color="warning"
@@ -42,13 +43,14 @@ const RightSidebar = ({
       >
         Collapse
       </Button>
-      <CourseList {...courseListProps} columns={1} onLoadPage={() => {}} />
+      <CourseList {...courseListProps} toolbarHeight={toolbarHeight} columns={1} onLoadPage={() => {}} />
     </Drawer>
   );
 };
 
 RightSidebar.propTypes = {
   rightSidebarState: PropTypes.bool,
+  toolbarHeight: PropTypes.number.isRequired,
   courses: PropTypes.array,
   courseFilter: PropTypes.string,
   handleDelete: PropTypes.func,
