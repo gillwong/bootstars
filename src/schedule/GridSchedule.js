@@ -29,8 +29,8 @@ const GridSchedule = ({
   let classTimeStart, classTimeEnd;
   const classIndex = useRef(undefined);
 
-  const addToTable = course => {
-    let newTableContent = structuredClone(tableContent);
+  const addToTable = (course, table) => {
+    let newTableContent = structuredClone(table);
 
     for(let i = 0; i < course.schedules[classIndex.current].length; i++) {
       classTimeStart = course.schedules[classIndex.current][i].time.substring(0, 5);
@@ -40,7 +40,11 @@ const GridSchedule = ({
       let classTimeEndObj = dayjs(classTimeEnd, "HH.mm");
       let duration = classTimeEndObj.diff(classTimeStartObj, "h", true);
 
-      newTableContent[parseInt(classTimeStart.substring(0, 2)) - 7][DAYS.findIndex(el => el === course.schedules[classIndex.current][i].day) + 1] = {
+      newTableContent[
+        parseInt(classTimeStart.substring(0, 2)) - 7
+      ][
+        DAYS.findIndex(el => el === course.schedules[classIndex.current][i].day) + 1
+      ] = {
         course,
         index: classIndex.current,
         classTimeStart,
@@ -50,8 +54,8 @@ const GridSchedule = ({
         group: course.schedules[classIndex.current][i]
       };
     }
-    setTableContent(newTableContent);
-    // console.log({ course, tableContent, newTableContent });
+    // console.log({ course, table, newTableContent });
+    return newTableContent;
   };
 
   const [{ isOver, canDrop, itemObj }, drop] = useDrop(() => ({
@@ -73,9 +77,8 @@ const GridSchedule = ({
       }
       return false;
     },
-    // eslint-disable-next-line no-unused-vars
     drop: item => {
-      // addToTable(item);  // breaks tableContent
+      setPrevTableContent(p => addToTable(item, p));
     },
     collect: monitor => ({
       isOver: !!monitor.isOver(),
@@ -93,10 +96,9 @@ const GridSchedule = ({
     const hoverEffect = () => {
       // console.log({ prevTableContent, tableContent });
       if(isOver && canDrop && classIndex) {
-        const newPrevTableContent = structuredClone(tableContent);
-        setPrevTableContent(newPrevTableContent);
-        // console.log("hover", { newPrevTableContent });
-        addToTable(itemObj);
+        // console.log("hover", { classIndex });
+        setTableContent(addToTable(itemObj, prevTableContent));
+        // addToTable(itemObj, prevTableContent, setTableContent);
       } else if(!isOver && canDrop && classIndex) {
         const newTableContent = structuredClone(prevTableContent);
         setTableContent(newTableContent);

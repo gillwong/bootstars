@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import { ItemTypes } from "../services/constants";
 
 const CourseCard = ({ course, handleDelete }) => {
-  const [{ isDragging }, dragSource, dragPreview] = useDrag(() => ({
+  const [{ isDragging }, dragSource] = useDrag(() => ({
     type: ItemTypes.COURSE,
     item: () => ({
       code: course.code,
@@ -23,7 +23,6 @@ const CourseCard = ({ course, handleDelete }) => {
 
   return (
     <Card
-      ref={dragPreview}
       sx={{
         margin: 1,
         backgroundColor: blueGrey[50],

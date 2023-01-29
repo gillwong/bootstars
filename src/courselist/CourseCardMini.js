@@ -12,6 +12,7 @@ const CourseCardMini = ({
   group,
   tableContent,
   setTableContent,
+  setPrevTableContent
 }) => {
   const theme = useTheme();
   const isLg = useMediaQuery(theme.breakpoints.up("lg"));
@@ -27,7 +28,7 @@ const CourseCardMini = ({
         overflow: "hidden",
         mt: mt,
         pb: 0,
-        width: 1,
+        width: 0.9,
         height: hovered ? "auto" : `${height * 100}%`,
         zIndex: hovered ? 2 : 1
       }}
@@ -96,6 +97,7 @@ const CourseCardMini = ({
                   })
                 );
               setTableContent(newTableContent);
+              setPrevTableContent(newTableContent);
             }}
           >{isLg ? "Remove" : <RemoveCircle />}</Button>
         </Box>

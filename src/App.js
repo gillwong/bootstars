@@ -11,7 +11,7 @@ import AppHeader from "./appheader/AppHeader";
 import CourseList from "./courselist/CourseList";
 import Home from "./home/Home";
 import Schedule from "./schedule/Schedule";
-import { OFF, ON } from "./services/constants";
+import { BLANK_SCHEDULE, OFF, ON } from "./services/constants";
 import coursesService from "./services/courses";
 import RightSidebar from "./sidebar/RightSidebar";
 import Sidebar from "./sidebar/Sidebar";
@@ -57,25 +57,8 @@ function App() {
   const appHeaderRef = useRef();
   const [toolbarHeight, setToolbarHeight] = useState(0);
 
-  const [scheduleContentTemp, setScheduleContentTemp] = useState([]);
-  const [scheduleContent, setScheduleContent] = useState([
-    ["Time", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-    ["08.00", "", "", "", "", "", "", ""],
-    ["09.00", "", "", "", "", "", "", ""],
-    ["10.00", "", "", "", "", "", "", ""],
-    ["11.00", "", "", "", "", "", "", ""],
-    ["12.00", "", "", "", "", "", "", ""],
-    ["13.00", "", "", "", "", "", "", ""],
-    ["14.00", "", "", "", "", "", "", ""],
-    ["15.00", "", "", "", "", "", "", ""],
-    ["16.00", "", "", "", "", "", "", ""],
-    ["17.00", "", "", "", "", "", "", ""],
-    ["18.00", "", "", "", "", "", "", ""],
-    ["19.00", "", "", "", "", "", "", ""],
-    ["20.00", "", "", "", "", "", "", ""],
-    ["21.00", "", "", "", "", "", "", ""],
-    ["22.00", "", "", "", "", "", "", ""],
-  ]);
+  const [scheduleContentTemp, setScheduleContentTemp] = useState(BLANK_SCHEDULE);
+  const [scheduleContent, setScheduleContent] = useState(BLANK_SCHEDULE);
 
   const [courses, setCourses] = useState([]);
   const [sidebarState, setSidebarState] = useState(OFF);
