@@ -70,7 +70,7 @@ const Schedule = ({
   // });
 
   useEffect(() => {
-    console.log({ dropIndex, anyHoverEvent });
+    // console.log({ dropIndex, anyHoverEvent });
     if(anyHoverEvent && dropIndex) {
       setTableContent(addToTable(childItemObj, prevTableContent, dropIndex));
     } else {

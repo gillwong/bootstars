@@ -59,12 +59,12 @@ const GridSchedule = ({
 
   useEffect(() => {
     if(canDrop && isOver) {
-      console.log("YES", { dropIndex: classIndex.current, childItemObj: itemObj });
+      // console.log("YES", { dropIndex: classIndex.current, childItemObj: itemObj });
       setDropIndex(classIndex.current);
       setChildItemObj(structuredClone(itemObj));
       setAnyHoverEvent(true);
     } else if(canDrop && !isOver) {
-      console.log("NO", { dropIndex: classIndex.current, childItemObj: itemObj });
+      // console.log("NO", { dropIndex: classIndex.current, childItemObj: itemObj });
       setAnyHoverEvent(false);
     }
   }, [isOver]);
