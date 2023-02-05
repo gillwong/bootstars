@@ -17,6 +17,7 @@ const RightSidebar = ({
   const courseListProps = {
     courses,
     courseFilter,
+    toolbarHeight,
     handleDelete
   };
 

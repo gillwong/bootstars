@@ -18,6 +18,7 @@ import { DashLg, PlusLg } from "react-bootstrap-icons";
 import { useNavigate, useParams } from "react-router-dom";
 
 import coursesServices from "../services/courses";
+import parseCourse from "../services/parser";
 import AddSchedule from "./AddSchedule";
 
 dayjs.extend(customParseFormat);
@@ -47,11 +48,13 @@ const AddCourse = ({
   const [ au, setAu ] = useState(3);
   const [ grading, setGrading ] = useState("Letter-Graded");
   const [ prereqStr, setPrereqStr ] = useState("");
+  const [ prereqNote, setPrereqNote ] = useState("");
   const [ exclusiveStr, setExclusiveStr ] = useState("");
   const [ progExc, setProgExc ] = useState("");
   const [ ayExc, setAyExc ] = useState("");
   const [ bde, toggleBde ] = useState(true);
   const [ gerpe, toggleGerpe ] = useState(true);
+  const [ ue, toggleUe ] = useState(true);
   const [ examSchedule, setExamSchedule ] = useState(new Date());
   const [ duration, setDuration ] = useState(1);
   const [ schedules, setSchedules ] = useState(new Map());
@@ -69,8 +72,9 @@ const AddCourse = ({
           setCode(returnedCourse.code);
           setAu(returnedCourse.au);
           setSchool(returnedCourse.school);
-          setPrereqStr(returnedCourse.prereq.join(", "));
-          setExclusiveStr(returnedCourse.exclusive.join(", "));
+          setPrereqStr(returnedCourse.prereq);
+          setPrereqNote(returnedCourse.prereqNote);
+          setExclusiveStr(returnedCourse.exclusive);
           setProgExc(returnedCourse.programmeExclude);
           setAyExc(returnedCourse.ayExclude);
           toggleBde(returnedCourse.bde);
@@ -95,12 +99,14 @@ const AddCourse = ({
       school,
       au,
       grading,
-      prereq: prereqStr.split(", ").join(" & ").split(" & "),
-      exclusive: exclusiveStr.split(", ").join(" & ").split(" & "),
+      prereq: prereqStr,
+      prereqNote: prereqNote,
+      exclusive: exclusiveStr,
       programmeExclude: progExc,
       ayExclude: ayExc,
       bde,
       gerpe,
+      ue,
       examSchedule: hasFinals ? examSchedule : "Not Applicable",
       examDuration: hasFinals ? duration : 0,
       schedules
@@ -134,89 +140,24 @@ const AddCourse = ({
     reader.readAsText(htmlParse);
     reader.onload = (e) => {
       const htmlString = e.target.result;
-      const parser = new DOMParser();
-      const parsedDocument = parser.parseFromString(htmlString, "text/html");
-      const evalXPath = (xpath) => {
-        return parsedDocument.evaluate(xpath, parsedDocument, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-      };
-
-      const codeParsed = evalXPath("//td[.//*[contains(text(),\"[+]\")]]").innerText.trim().substring(4);
-
-      const nameParsed = evalXPath("//td[.//*[contains(text(),\"[+]\")]]/following-sibling::*[1]").innerText.trim();
-
-      const auParsed = parseInt(evalXPath("//td[.//*[contains(text(),\"[+]\")]]/following-sibling::*[2]").innerText.trim().split(" ")[0]);
-
-      const schoolParsed = evalXPath("//td[.//*[contains(text(),\"[+]\")]]/following-sibling::*[3]").innerText.trim();
-
-      const prereqParsedNode = evalXPath("//td[.//*[contains(text(),\"Prerequisite\")]]/following-sibling::*");
-      const prereqParsed = prereqParsedNode ? prereqParsedNode.innerText.trim() : "";
-
-      const excParsedNode = evalXPath("//td[.//*[contains(text(),\"Mutually exclusive\")]]/following-sibling::*");
-      const excParsed = excParsedNode ? excParsedNode.innerText.trim() : "";
-
-      const progExcParsedNode = evalXPath("//td[.//*[contains(text(),\"Not available to Programme\")]]/following-sibling::*");
-      const progExcParsed = progExcParsedNode ? progExcParsedNode.innerText.trim() : "";
-
-      const ayExcParsedNode = evalXPath("//td[.//*[contains(text(),\"Not available to all Programme\")]]/following-sibling::*");
-      const ayExcParsed = ayExcParsedNode ? ayExcParsedNode.innerText.trim() : "";
-
-      const gradingTypeParsed = evalXPath("//td[.//*[contains(text(),\"Grading Type\")]]/following-sibling::*").innerText.trim();
-
-      const examScheduleParsed = evalXPath("//td[.//*[contains(text(),\"Exam Schedule\")]]/following-sibling::*").innerText.trim();
-
-      const bdeRemarkParsed = evalXPath("//tr[.//*[contains(text(),\"Remark\")]]/following-sibling::*[1]").innerText.trim();
-
-      const gerpeRemarkParsed = evalXPath("//tr[.//*[contains(text(),\"Remark\")]]/following-sibling::*[2]").innerText.trim();
-
-      const scheduleNodesSnapshot = parsedDocument.evaluate("//table[@border=\"1\"]/tbody/tr[1]/following-sibling::tr", parsedDocument, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
-
-      let schedulesParsed = new Map();
-      let indexParsed;
-      const regexpTime = /([0-9]{2})([0-9]{2})to([0-9]{2})([0-9]{2})/;
-
-      for(let i = 0; i < scheduleNodesSnapshot.snapshotLength; i++) {
-        const scheduleNode = scheduleNodesSnapshot.snapshotItem(i);
-        if(!isNaN(parseInt(scheduleNode.children[0].innerText.trim()))) {
-          indexParsed = scheduleNode.children[0].innerText.trim();
-          schedulesParsed.set(indexParsed, []);
-        }
-
-        const match = scheduleNode.children[4].innerText.trim().match(regexpTime);
-        schedulesParsed.set(indexParsed, [...schedulesParsed.get(indexParsed), {
-          type: scheduleNode.children[1].innerText.trim(),
-          group: scheduleNode.children[2].innerText.trim(),
-          day: scheduleNode.children[3].innerText.trim(),
-          time: `${match[1]}.${match[2]} - ${match[3]}.${match[4]}`,
-          venue: scheduleNode.children[5].innerText.trim(),
-          remark: scheduleNode.children[6].innerText.trim()
-        }]);
-      }
-
-      let examScheduleParsedProcessed, examDurationProcessed;
-      if(examScheduleParsed !== "Not Applicable") {
-        examScheduleParsedProcessed = dayjs.tz(examScheduleParsed, "DD-MMM-YYYY HHmm", "Asia/Singapore").toDate();
-
-        const examTime = examScheduleParsed.match(/([0-9]{4})to([0-9]{4})/);
-        const startTime = dayjs(examTime[1], "HHmm");
-        const endTime = dayjs(examTime[2], "HHmm");
-        examDurationProcessed = endTime.diff(startTime, "h", true);
-      }
-
-      toggleHasFinals(examScheduleParsed !== "Not Applicable");
-      setTitle(nameParsed);
-      setCode(codeParsed);
-      setAu(auParsed);
-      setSchool(schoolParsed);
-      setPrereqStr(prereqParsed);
-      setExclusiveStr(excParsed);
-      setProgExc(progExcParsed);
-      setAyExc(ayExcParsed);
-      toggleBde(!bdeRemarkParsed.includes("not available"));
-      toggleGerpe(!gerpeRemarkParsed.includes("not available"));
-      setGrading(gradingTypeParsed);
-      setExamSchedule(examScheduleParsed !== "Not Applicable" ? examScheduleParsedProcessed : new Date());
-      setDuration(examScheduleParsed !== "Not Applicable" ? examDurationProcessed : 0);
-      setSchedules(schedulesParsed);
+      const courseParsed = parseCourse(htmlString);
+      toggleHasFinals(courseParsed.hasFinals);
+      setTitle(courseParsed.title);
+      setCode(courseParsed.code);
+      setAu(courseParsed.au);
+      setSchool(courseParsed.school);
+      setPrereqStr(courseParsed.prereq);
+      setPrereqNote(courseParsed.prereqNote);
+      setExclusiveStr(courseParsed.exclusive);
+      setProgExc(courseParsed.programmeExc);
+      setAyExc(courseParsed.ayExclude);
+      toggleBde(courseParsed.bde);
+      toggleGerpe(courseParsed.gerpe);
+      toggleUe(courseParsed.ue);
+      setGrading(courseParsed.grading);
+      setExamSchedule(courseParsed.examSchedule);
+      setDuration(courseParsed.examDuration);
+      setSchedules(courseParsed.schedules);
     };
   };
 
@@ -280,11 +221,24 @@ const AddCourse = ({
           </Form.Group></Col>
         </Row>
         <Row className="mb-3">
+          <Form.Group>
+            <Form.Label>Course Prerequisite Note</Form.Label>
+            <Form.Control
+              required
+              disabled={mode === "VIEW"}
+              type="text"
+              placeholder="Enter Course Name"
+              value={prereqNote}
+              onChange={(e) => setPrereqNote(e.target.value)}
+            />
+          </Form.Group>
+        </Row>
+        <Row className="mb-3">
           <Col><Form.Group>
             <Form.Label>Course Prerequisites</Form.Label>
             <Form.Control
               disabled={mode === "VIEW"}
-              type="text"
+              as="textarea"
               placeholder="Enter Note/Course(s)"
               value={prereqStr}
               onChange={(e) => setPrereqStr(e.target.value)}
@@ -295,7 +249,7 @@ const AddCourse = ({
             <Form.Label>Mutually Exclusive with</Form.Label>
             <Form.Control
               disabled={mode === "VIEW"}
-              type="text"
+              as="textarea"
               placeholder="Enter Course(s)"
               value={exclusiveStr}
               onChange={(e) => setExclusiveStr(e.target.value)}
@@ -308,7 +262,7 @@ const AddCourse = ({
             <Form.Label>Not Available to programme</Form.Label>
             <Form.Control
               disabled={mode === "VIEW"}
-              type="text"
+              as="textarea"
               placeholder="Enter Programme(s)"
               value={progExc}
               onChange={(e) => setProgExc(e.target.value)}
@@ -318,7 +272,7 @@ const AddCourse = ({
             <Form.Label>Not Available to all programmes</Form.Label>
             <Form.Control
               disabled={mode === "VIEW"}
-              type="text"
+              as="textarea"
               placeholder="Enter AY(s)"
               value={ayExc}
               onChange={(e) => setAyExc(e.target.value)}
@@ -377,6 +331,17 @@ const AddCourse = ({
               onChange={() => {
                 if(mode !== "VIEW") {
                   toggleGerpe(!gerpe);
+                }
+              }}
+            />
+            <Form.Check
+              inline
+              checked={ue}
+              type="checkbox"
+              label="Unrestricted Elective"
+              onChange={() => {
+                if(mode !== "VIEW") {
+                  toggleUe(!ue);
                 }
               }}
             />
