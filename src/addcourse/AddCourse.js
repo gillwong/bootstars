@@ -224,7 +224,6 @@ const AddCourse = ({
           <Form.Group>
             <Form.Label>Course Prerequisite Note</Form.Label>
             <Form.Control
-              required
               disabled={mode === "VIEW"}
               type="text"
               placeholder="Enter Course Name"

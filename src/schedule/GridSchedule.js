@@ -43,7 +43,7 @@ const GridSchedule = ({
       return false;
     },
     drop: item => {
-      setPrevTableContent(p => addToTable(item, p, classIndex.current));
+      setPrevTableContent(p => addToTable(item, p, classIndex.current, true));
     },
     collect: monitor => ({
       isOver: !!monitor.isOver(),

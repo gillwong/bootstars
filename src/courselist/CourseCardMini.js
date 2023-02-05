@@ -3,6 +3,8 @@ import { Box, Button, Card, CardContent, Typography, useMediaQuery, useTheme } f
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 
+import storageAvailable from "../services/storageAvailable";
+
 const CourseCardMini = ({
   course,
   index,
@@ -98,6 +100,9 @@ const CourseCardMini = ({
                 );
               setTableContent(newTableContent);
               setPrevTableContent(newTableContent);
+              if(storageAvailable("localStorage")) {
+                localStorage.setItem("userSchedule", JSON.stringify(newTableContent));
+              }
             }}
           >{isLg ? "Remove" : <RemoveCircle />}</Button>
         </Box>

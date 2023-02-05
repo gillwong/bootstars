@@ -10,6 +10,7 @@ import React, { Fragment, useEffect } from "react";
 import { useState } from "react";
 
 import { DAYS } from "../services/constants";
+import storageAvailable from "../services/storageAvailable";
 import GridSchedule from "./GridSchedule";
 
 dayjs.extend(customParseFormat);
@@ -32,7 +33,7 @@ const Schedule = ({
   const [childItemObj, setChildItemObj] = useState(null);
   const [anyHoverEvent, setAnyHoverEvent] = useState(false);
 
-  const addToTable = (course, table, classIndex) => {
+  const addToTable = (course, table, classIndex, updateStorage = false) => {
     let newTableContent = structuredClone(table);
 
     for(let i = 0; i < course.schedules[classIndex].length; i++) {
@@ -56,6 +57,11 @@ const Schedule = ({
         duration,
         group: course.schedules[classIndex][i]
       };
+    }
+    if(updateStorage) {
+      if(storageAvailable("localStorage")) {
+        localStorage.setItem("userSchedule", JSON.stringify(newTableContent));
+      }
     }
     // console.log({ course, table, newTableContent });
     return newTableContent;

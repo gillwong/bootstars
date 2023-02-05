@@ -13,6 +13,7 @@ import Home from "./home/Home";
 import Schedule from "./schedule/Schedule";
 import { BLANK_SCHEDULE, OFF, ON } from "./services/constants";
 import coursesService from "./services/courses";
+import storageAvailable from "./services/storageAvailable";
 import RightSidebar from "./sidebar/RightSidebar";
 import Sidebar from "./sidebar/Sidebar";
 
@@ -75,6 +76,18 @@ function App() {
       .catch(err => console.error(err));
     getAppHeaderHeight();
     window.addEventListener("resize", getAppHeaderHeight);
+    if(storageAvailable("localStorage")) {
+      // localStorage.removeItem("userSchedule");
+      if(localStorage.getItem("userSchedule")) {
+        const userSchedule = JSON.parse(localStorage.getItem("userSchedule"));
+        console.log(userSchedule);
+        setScheduleContentTemp(userSchedule);
+        setScheduleContent(userSchedule);
+      } else {
+        console.log("BLANK SCHED");
+        localStorage.setItem("userSchedule", JSON.stringify(BLANK_SCHEDULE));
+      }
+    }
   }, []);
 
   const getAppHeaderHeight = () => {
