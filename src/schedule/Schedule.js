@@ -63,7 +63,7 @@ const Schedule = ({
         localStorage.setItem("userSchedule", JSON.stringify(newTableContent));
       }
     }
-    // console.log({ course, table, newTableContent });
+    console.log({ course, table, newTableContent });
     return newTableContent;
   };
 

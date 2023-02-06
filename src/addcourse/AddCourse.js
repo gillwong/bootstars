@@ -114,6 +114,7 @@ const AddCourse = ({
 
     switch(mode) {
     case "EDIT":
+      // issue: editing does not update schedule
       newCourse["id"] = id;
       handleEdit(newCourse);
       navigate(-1);
@@ -226,7 +227,7 @@ const AddCourse = ({
             <Form.Control
               disabled={mode === "VIEW"}
               type="text"
-              placeholder="Enter Course Name"
+              placeholder="Enter Note"
               value={prereqNote}
               onChange={(e) => setPrereqNote(e.target.value)}
             />
@@ -238,7 +239,7 @@ const AddCourse = ({
             <Form.Control
               disabled={mode === "VIEW"}
               as="textarea"
-              placeholder="Enter Note/Course(s)"
+              placeholder="Enter Course(s)"
               value={prereqStr}
               onChange={(e) => setPrereqStr(e.target.value)}
             />

@@ -14,6 +14,7 @@ const Sidebar = ({
   const navigate = useNavigate();
 
   return (
+    // issue: animation lags when number of course is large
     <Drawer
       variant="persistent"
       anchor="left"

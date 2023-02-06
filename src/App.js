@@ -11,6 +11,7 @@ import AppHeader from "./appheader/AppHeader";
 import CourseList from "./courselist/CourseList";
 import Home from "./home/Home";
 import Schedule from "./schedule/Schedule";
+import ViewSchedule from "./schedule/ViewSchedule";
 import { BLANK_SCHEDULE, OFF, ON } from "./services/constants";
 import coursesService from "./services/courses";
 import storageAvailable from "./services/storageAvailable";
@@ -80,11 +81,11 @@ function App() {
       // localStorage.removeItem("userSchedule");
       if(localStorage.getItem("userSchedule")) {
         const userSchedule = JSON.parse(localStorage.getItem("userSchedule"));
-        console.log(userSchedule);
+        // console.log(userSchedule);
         setScheduleContentTemp(userSchedule);
         setScheduleContent(userSchedule);
       } else {
-        console.log("BLANK SCHED");
+        // console.log("BLANK SCHED");
         localStorage.setItem("userSchedule", JSON.stringify(BLANK_SCHEDULE));
       }
     }
@@ -99,6 +100,34 @@ function App() {
     // Convert Map to Object
     newCourse.schedules = Object.fromEntries(newCourse.schedules);
 
+    // Adds teachingWeeks to schedules' groups
+    Object.keys(newCourse.schedules).forEach((index) => {
+      newCourse.schedules[index].forEach((group) => {
+        if(group.remark.match(/Wk/)) {
+          let teachingWeeksSet = new Set();
+
+          const commaSeperated = group.remark.match(/(\d+,)+\d+/g);
+          if(commaSeperated) {
+            for(const week of commaSeperated[0].split(",")) {
+              teachingWeeksSet.add(Number(week));
+            }
+          }
+
+          const weekRange = group.remark.match(/(\d+)-(\d+)/);
+          if(weekRange) {
+            for(let week = Number(weekRange[1]); week <= Number(weekRange[2]); week++) {
+              teachingWeeksSet.add(week);
+            }
+          }
+
+          group.teachingWeeks = Array.from(teachingWeeksSet).sort((a, b) => a - b);
+          // console.log(group.teachingWeeks);
+        } else {
+          group.teachingWeeks = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+        }
+      });
+    });
+
     coursesService.create(newCourse)
       .then(returnedCourse => setCourses(courses.concat(returnedCourse)))
       .catch(err => console.error(err));
@@ -107,6 +136,34 @@ function App() {
   const editCourse = (updatedCourse) => {
     // Convert Map to Object
     updatedCourse.schedules = Object.fromEntries(updatedCourse.schedules);
+
+    // Adds teachingWeeks to schedules' groups
+    Object.keys(updatedCourse.schedules).forEach((index) => {
+      updatedCourse.schedules[index].forEach((group) => {
+        if(group.remark.match(/Wk/)) {
+          let teachingWeeksSet = new Set();
+
+          const commaSeperated = group.remark.match(/(\d+,)+\d+/g);
+          if(commaSeperated) {
+            for(const week of commaSeperated[0].split(",")) {
+              teachingWeeksSet.add(Number(week));
+            }
+          }
+
+          const weekRange = group.remark.match(/(\d+)-(\d+)/);
+          if(weekRange) {
+            for(let week = Number(weekRange[1]); week <= Number(weekRange[2]); week++) {
+              teachingWeeksSet.add(week);
+            }
+          }
+
+          group.teachingWeeks = Array.from(teachingWeeksSet).sort((a, b) => a - b);
+          // console.log(group.teachingWeeks);
+        } else {
+          group.teachingWeeks = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+        }
+      });
+    });
 
     coursesService.update(updatedCourse)
       .then(returnedCourse => setCourses(courses.map(
@@ -194,6 +251,13 @@ function App() {
               setTableContent={setScheduleContent}
               setPrevTableContent={setScheduleContentTemp}
               onLoadPage={() => setPageTitle("Schedule")} />
+          } />
+          <Route path="/schedule/view" element={
+            <ViewSchedule
+              week={week}
+              tableContent={scheduleContent}
+              toolbarHeight={toolbarHeight}
+              onLoadPage={() => setPageTitle("Schedule View")} />
           } />
           <Route path="/edit/:id" element={
             <AddCourse
