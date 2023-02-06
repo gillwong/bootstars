@@ -16,6 +16,7 @@ const CourseCardMini = ({
   setTableContent,
   setPrevTableContent
 }) => {
+  // issue: content does not change when course is edited
   const theme = useTheme();
   const isLg = useMediaQuery(theme.breakpoints.up("lg"));
 
